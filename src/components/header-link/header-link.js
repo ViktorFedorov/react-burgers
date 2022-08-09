@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './header-link.module.css'
 
 const HeaderLink = ({icon, children, textClass}) => {
-
   return (
     <a href='/' className={styles.link}>
       {icon}
