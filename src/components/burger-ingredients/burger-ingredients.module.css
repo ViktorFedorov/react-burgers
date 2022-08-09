@@ -1,10 +1,4 @@
 .ingredients {
-  width: 603px;
   box-sizing: border-box;
   border: 1px solid tomato;
 }
-
-/*.list {*/
-/*  max-height: calc(90vh - 200px);*/
-/*  overflow: scroll;*/
-/*}*/

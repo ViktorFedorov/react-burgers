@@ -15,7 +15,7 @@ const BurgerIngredients = ({data}) => {
         Соберите бургер
       </h1>
       <Tabs />
-      <div className={styles.list}>
+      <div>
         <IngredientList title="Булки" ingredients={buns} />
         <IngredientList title="Соусы" ingredients={sauce} />
         <IngredientList title="Начинки" ingredients={main} />
