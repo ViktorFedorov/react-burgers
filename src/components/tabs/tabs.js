@@ -13,12 +13,12 @@ const Tabs = () => {
         </Tab>
       </li>
       <li>
-        <Tab active={current === 'Соусы'} value='Булки' onClick={() => setCurrent('Соусы')}>
+        <Tab active={current === 'Соусы'} value='Соусы' onClick={() => setCurrent('Соусы')}>
           Соусы
         </Tab>
       </li>
       <li>
-        <Tab active={current === 'Начинки'} value='Булки' onClick={() => setCurrent('Начинки')}>
+        <Tab active={current === 'Начинки'} value='Начинки' onClick={() => setCurrent('Начинки')}>
           Начинки
         </Tab>
       </li>
