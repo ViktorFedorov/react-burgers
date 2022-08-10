@@ -10,7 +10,7 @@ const App = () => {
       <AppHeader />
       <main className="content columns">
         <BurgerIngredients data={data} />
-        <BurgerConstructor />
+        <BurgerConstructor data={data}/>
       </main>
     </div>
   );
