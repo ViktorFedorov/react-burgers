@@ -11,7 +11,11 @@ const IngredientList = ({title, ingredients}) => {
         {
           ingredients.map(ingredient => {
             const {name, price, image} = ingredient
-            return <IngredientItem counter={<Counter count={1} />} name={name} price={price} image={image} />
+            return <IngredientItem
+              counter={<Counter count={1} />}
+              name={name}
+              price={price}
+              image={image} />
           })
         }
       </div>
