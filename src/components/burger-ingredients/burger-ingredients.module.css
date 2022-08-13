@@ -4,5 +4,6 @@
 
 .scroll {
   height: calc(100vh - 278px);
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
