@@ -6,6 +6,6 @@
 
 .columns {
   display: grid;
-  grid-template-columns: repeat(2, 600px);
+  grid-template-columns: 601px 599px;
   column-gap: 40px;
 }

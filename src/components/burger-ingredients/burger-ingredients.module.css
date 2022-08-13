@@ -1,3 +1,8 @@
 .ingredients {
   box-sizing: border-box;
 }
+
+.scroll {
+  height: calc(100vh - 278px);
+  overflow: scroll;
+}
