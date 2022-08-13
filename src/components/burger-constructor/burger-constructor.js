@@ -5,7 +5,7 @@ import styles from './burger-constructor.module.css'
 
 const BurgerConstructor = ({data}) => {
   return (
-    <div className="pl-5 pt-20 pr-4">
+    <div className="pl-5 pt-20">
       <div className={`mt-4 ${styles.item}`}>
         <div className={styles.dropicon}></div>
         <ConstructorElement
@@ -15,7 +15,7 @@ const BurgerConstructor = ({data}) => {
           type="top"
           isLocked={true} />
       </div>
-      <ul className={`${styles.scroll} ${styles.list}`}>
+      <ul className={`pr-4 ${styles.scroll} ${styles.list}`}>
         {
           data.map(ingredient => {
             const {_id, name, image_mobile, price} = ingredient
@@ -42,7 +42,7 @@ const BurgerConstructor = ({data}) => {
           type="bottom"
           isLocked={true} />
       </div>
-      <Total />
+      <Total total={610} />
     </div>
   );
 };
