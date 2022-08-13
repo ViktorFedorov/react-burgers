@@ -9,10 +9,10 @@ const BurgerConstructor = ({data}) => {
       <ul className={styles.list}>
         {
           data.map(ingredient => {
-            const {name, image_mobile, price} = ingredient
+            const {_id, name, image_mobile, price} = ingredient
 
             return (
-              <li className={`mt-4 ${styles.item}`}>
+              <li key={_id} className={`mt-4 ${styles.item}`}>
                 <div className={styles.dropicon}></div>
                 <ConstructorElement
                   text={name}

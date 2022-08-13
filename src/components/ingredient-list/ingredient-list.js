@@ -10,8 +10,9 @@ const IngredientList = ({title, ingredients}) => {
       <div className={`ml-4 mt-6 mr-4 ${styles.grid}`}>
         {
           ingredients.map(ingredient => {
-            const {name, price, image} = ingredient
+            const {_id, name, price, image} = ingredient
             return <IngredientItem
+              key={_id}
               counter={<Counter count={1} />}
               name={name}
               price={price}
