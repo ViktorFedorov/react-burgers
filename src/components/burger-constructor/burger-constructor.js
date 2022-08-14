@@ -10,7 +10,7 @@ const BurgerConstructor = ({data}) => {
     <div className="pl-5 pt-20">
       <div className={`mt-4 ${styles.item} ${styles.bun}`}>
         <ConstructorElement
-          text={data[0].name}
+          text={`${data[0].name} (верх)`}
           thumbnail={data[0].image_mobile}
           price={data[0].price}
           type="top"
@@ -34,11 +34,11 @@ const BurgerConstructor = ({data}) => {
           })
         }
       </ul>
-      <div className={`mt-4 ${styles.item} ${styles.bun}`}>
+      <div className={`mt-4 ${styles.item} ${styles.bun}`}> 
         <ConstructorElement
-          text={data[data.length - 1].name}
-          thumbnail={data[data.length - 1].image_mobile}
-          price={data[data.length - 1].price}
+          text={`${data[0].name} (низ)`}
+          thumbnail={data[0].image_mobile}
+          price={data[0].price}
           type="bottom"
           isLocked={true} />
       </div>
