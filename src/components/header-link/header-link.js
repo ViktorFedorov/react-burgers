@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import styles from './header-link.module.css'
 
 const HeaderLink = ({icon, children, textClass}) => {
@@ -7,7 +7,7 @@ const HeaderLink = ({icon, children, textClass}) => {
       {icon}
       <div className={`ml-2 ${textClass}`}>{children}</div>
     </a>
-  );
-};
+  )
+}
 
-export default HeaderLink;
+export default HeaderLink

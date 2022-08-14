@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
+import React, {useState} from 'react'
+import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './tabs.module.css'
 
 const Tabs = () => {
@@ -23,7 +23,7 @@ const Tabs = () => {
         </Tab>
       </li>
     </ul>
-  );
-};
+  )
+}
 
-export default Tabs;
+export default Tabs
