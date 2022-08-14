@@ -1,28 +1,14 @@
-import React from 'react';
-import {ConstructorElement} from "@ya.praktikum/react-developer-burger-ui-components";
-import Total from "../total/total";
+import React from 'react'
+import {ConstructorElement} from "@ya.praktikum/react-developer-burger-ui-components"
+import Total from "../total/total"
 import PropTypes from 'prop-types'
+import ingredientPropTypes from '../../utils/types'
 import styles from './burger-constructor.module.css'
-
-const ingredientPropTypes = PropTypes.shape({
-  _id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  proteins: PropTypes.number,
-  fat: PropTypes.number,
-  carbohydrates: PropTypes.number,
-  price: PropTypes.number.isRequired,
-  image: PropTypes.string,
-  image_mobile: PropTypes.string.isRequired,
-  image_large: PropTypes.string,
-  __v: PropTypes.number
-});
 
 const BurgerConstructor = ({data}) => {
   return (
     <div className="pl-5 pt-20">
-      <div className={`mt-4 ${styles.item}`}>
-        <div className={styles.dropicon}></div>
+      <div className={`mt-4 ${styles.item} ${styles.bun}`}>
         <ConstructorElement
           text={data[0].name}
           thumbnail={data[0].image_mobile}
@@ -48,8 +34,7 @@ const BurgerConstructor = ({data}) => {
           })
         }
       </ul>
-      <div className={`mt-4 ${styles.item}`}>
-        <div className={styles.dropicon}></div>
+      <div className={`mt-4 ${styles.item} ${styles.bun}`}>
         <ConstructorElement
           text={data[data.length - 1].name}
           thumbnail={data[data.length - 1].image_mobile}
@@ -66,4 +51,4 @@ BurgerConstructor.propTypes = {
   data: PropTypes.arrayOf(ingredientPropTypes)
 }
 
-export default BurgerConstructor;
+export default BurgerConstructor
