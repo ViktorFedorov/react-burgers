@@ -2,12 +2,10 @@ import React from 'react'
 import Tabs from '../tabs/tabs'
 import IngredientList from '../ingredient-list/ingredient-list'
 import PropTypes from 'prop-types'
-import ingredientPropTypes from '../ingredient-item/ingredient-item'
+import ingredientPropTypes from '../../utils/types'
 import styles from './burger-ingredients.module.css'
 
-
 const BurgerIngredients = ({data}) => {
-
   const buns = data.filter(ingredient => ingredient.type === 'bun')
   const sauce = data.filter(ingredient => ingredient.type === 'sauce')
   const main = data.filter(ingredient => ingredient.type === 'main')

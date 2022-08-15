@@ -1,7 +1,10 @@
 import React from 'react'
 import IngredientItem from '../ingredient-item/ingredient-item'
 import {Counter} from '@ya.praktikum/react-developer-burger-ui-components'
+import PropTypes from 'prop-types'
+import ingredientPropTypes from'../../utils/types'
 import styles from './ingredient-list.module.css'
+
 
 const IngredientList = ({title, ingredients}) => {
   return (
@@ -24,6 +27,11 @@ const IngredientList = ({title, ingredients}) => {
       </div>
     </>
   )
+}
+
+IngredientList.propTypes = {
+  title: PropTypes.string.isRequired,
+  ingredients: PropTypes.arrayOf(ingredientPropTypes)
 }
 
 export default IngredientList

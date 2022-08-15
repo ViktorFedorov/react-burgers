@@ -1,5 +1,6 @@
 import React from 'react'
 import {Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
+import PropTypes from 'prop-types'
 import styles from './total.module.css'
 
 const Total = ({total}) => {
@@ -14,6 +15,10 @@ const Total = ({total}) => {
       </Button>
     </div>
   )
+}
+
+Total.propTypes = {
+  total: PropTypes.number.isRequired
 }
 
 export default Total
