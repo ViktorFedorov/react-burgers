@@ -31,7 +31,7 @@ const IngredientList = ({title, ingredients}) => {
 
 IngredientList.propTypes = {
   title: PropTypes.string.isRequired,
-  ingredients: PropTypes.arrayOf(ingredientPropTypes)
+  ingredients: PropTypes.arrayOf(ingredientPropTypes).isRequired
 }
 
 export default IngredientList

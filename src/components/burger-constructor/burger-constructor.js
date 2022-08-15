@@ -48,7 +48,7 @@ const BurgerConstructor = ({data}) => {
 }
 
 BurgerConstructor.propTypes = {
-  data: PropTypes.arrayOf(ingredientPropTypes)
+  data: PropTypes.arrayOf(ingredientPropTypes).isRequired
 }
 
 export default BurgerConstructor
