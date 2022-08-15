@@ -11,7 +11,7 @@ const AppHeader = () => {
       <nav className={`content ${styles.navigation}`}>
         <ul className={styles.list}>
           <li className='mr-7'>
-            <HeaderLink active={true} icon={<BurgerIcon type="primary"/>} textClass={textDefault}>
+            <HeaderLink active={true} icon={<BurgerIcon type='primary'/>} textClass={textDefault}>
               Конструктор
             </HeaderLink>
           </li>
