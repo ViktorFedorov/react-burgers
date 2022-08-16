@@ -6,6 +6,7 @@ import ingredientPropTypes from '../../utils/types'
 import styles from './burger-ingredients.module.css'
 
 const BurgerIngredients = ({data}) => {
+
   const buns = data.filter(ingredient => ingredient.type === 'bun')
   const sauce = data.filter(ingredient => ingredient.type === 'sauce')
   const main = data.filter(ingredient => ingredient.type === 'main')
