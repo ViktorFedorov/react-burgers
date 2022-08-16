@@ -1,0 +1,11 @@
+.link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 16px 20px;
+  color: #8585ad;
+}
+
+.link:nth-child(1) {
+  padding-left: 0;
+}

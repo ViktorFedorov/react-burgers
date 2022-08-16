@@ -1,0 +1,27 @@
+.list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+}
+
+.dropicon {
+  height: 18px;
+  width: 13px;
+  background: url(../../images/dnd_icon.svg) no-repeat center center;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.scroll {
+  height: calc(100vh - 500px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.bun {
+  margin-left: 20px;
+}
