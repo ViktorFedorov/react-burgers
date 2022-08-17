@@ -3,8 +3,8 @@ import styles from './order-details.module.css'
 
 const OrderDetails = () => {
   return (
-    <div className={styles.modal}>
-      <button className={`mt-15 mr-10 ${styles.close}`}></button>
+    <div className={`${styles.modal}`} onClickCapture={e => e.stopPropagation()}>
+      <button className={`mt-15 mr-10 closed ${styles.close}`}></button>
       <h2 className={`mt-30 text text_type_digits-large ${styles.numbers}`}>034536</h2>
       <p className='mt-8 text text_type_main-medium'>Идентификатор заказа</p>
       <div className={`mt-15 ${styles.done}`}></div>

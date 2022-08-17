@@ -14,6 +14,8 @@ const App = () => {
     hasError: false
   })
 
+  const [modalOrderOpen, setModalOrderOpen] = useState(false)
+
   useEffect(() => {
     fetch(baseApiUrl)
       .then(checkResponse)
@@ -33,6 +35,18 @@ const App = () => {
       })
   },[])
 
+  const handleOpenModal = () => {
+    setModalOrderOpen(true)
+  }
+
+  const handleCloseModal = (e) => {
+    if(e.target.classList.contains('closed') || e.key === 'Escape') {
+      setModalOrderOpen(false)
+    }
+  }
+
+  document.addEventListener('keydown', handleCloseModal)
+
   const {loading, data, hasError} = state
 
   return (
@@ -44,8 +58,8 @@ const App = () => {
           <AppHeader />
           <main className='content columns'>
             <BurgerIngredients data={data} />
-            <BurgerConstructor data={data} />
-            <ModalOverlay>
+            <BurgerConstructor data={data} openModal={handleOpenModal} />
+            <ModalOverlay isOpen={modalOrderOpen} closeOverlay={handleCloseModal} >
               <OrderDetails />
             </ModalOverlay>
           </main>
