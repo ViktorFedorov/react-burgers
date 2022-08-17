@@ -4,6 +4,8 @@ import BurgerIngredients from '../burger-ingredients/burger-ingredients'
 import BurgerConstructor from '../burger-constructor/burger-constructor'
 import {checkResponse} from '../../utils/utils'
 import {baseApiUrl} from '../../utils/constants'
+import ModalOverlay from '../modal-overlay/modal-overlay'
+import OrderDetails from '../order-details/order-details'
 
 const App = () => {
   const [state, setState] = useState({
@@ -43,6 +45,9 @@ const App = () => {
           <main className='content columns'>
             <BurgerIngredients data={data} />
             <BurgerConstructor data={data} />
+            <ModalOverlay>
+              <OrderDetails />
+            </ModalOverlay>
           </main>
         </>
       )}
