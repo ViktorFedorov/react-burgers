@@ -6,6 +6,7 @@ import {checkResponse} from '../../utils/utils'
 import {baseApiUrl} from '../../utils/constants'
 import Modal from '../modal/modal'
 import OrderDetails from '../order-details/order-details'
+import IngredientDetails from '../ingredient-details/ingredient-details'
 
 const App = () => {
   const [state, setState] = useState({
@@ -15,6 +16,8 @@ const App = () => {
   })
 
   const [isOrderDetailsOpen, setIsOrderDetailsOpen] = useState(false)
+  const [isIngredientDetailsOpen, setIngredientDetailsOpen] = useState(false)
+  const [ingredientId, setIngredientId] = useState(null)
 
   useEffect(() => {
     fetch(baseApiUrl)
@@ -35,12 +38,21 @@ const App = () => {
       })
   },[])
 
+  const handlerIngredientClick = (id) => {
+    setIngredientId(id)
+    setIngredientDetailsOpen(true)
+  }
+
   const handleOpenOrder = () => {
     setIsOrderDetailsOpen(true)
   }
 
   const handlerCloseOrder = () => {
     setIsOrderDetailsOpen(false)
+  }
+
+  const handlerCloseDetails = () => {
+    setIngredientDetailsOpen(false)
   }
 
   const {loading, data, hasError} = state
@@ -53,7 +65,9 @@ const App = () => {
         <>
           <AppHeader />
           <main className='content columns'>
-            <BurgerIngredients data={data} />
+            <BurgerIngredients
+              onClick={handlerIngredientClick}
+              data={data} />
             <BurgerConstructor
               openOrderDetails={handleOpenOrder}
               data={data} />
@@ -62,10 +76,19 @@ const App = () => {
 
 
             <Modal
-              close={handlerCloseOrder}
-              isOpen={isOrderDetailsOpen}>
+              isOpen={isOrderDetailsOpen}
+              close={handlerCloseOrder}>
               <OrderDetails
                 orderNumber={'034536'}/>
+            </Modal>
+
+
+            <Modal
+              isOpen={isIngredientDetailsOpen}
+              close={handlerCloseDetails}
+              header='Детали ингредиента'>
+              <IngredientDetails
+                data={data} id={ingredientId}/>
             </Modal>
 
 

@@ -19,7 +19,7 @@ const Modal = ({children, header, isOpen, close}) => {
       <ModalOverlay />
       <div className={styles.modal}>
         <button className={`mt-15 mr-10 ${styles.close}`}></button>
-        <h2>{header}</h2>
+        <h2 className='pt-2  ml-10 mt-10 text text_type_main-large'>{header}</h2>
         {children}
       </div>
     </div>
