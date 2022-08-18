@@ -4,7 +4,7 @@ import BurgerIngredients from '../burger-ingredients/burger-ingredients'
 import BurgerConstructor from '../burger-constructor/burger-constructor'
 import {checkResponse} from '../../utils/utils'
 import {baseApiUrl} from '../../utils/constants'
-import ModalOverlay from '../modal-overlay/modal-overlay'
+import Modal from '../modal/modal'
 import OrderDetails from '../order-details/order-details'
 
 const App = () => {
@@ -14,7 +14,7 @@ const App = () => {
     hasError: false
   })
 
-  const [modalOrderOpen, setModalOrderOpen] = useState(false)
+  const [isOrderDetailsOpen, setIsOrderDetailsOpen] = useState(false)
 
   useEffect(() => {
     fetch(baseApiUrl)
@@ -35,17 +35,9 @@ const App = () => {
       })
   },[])
 
-  const handleOpenModal = () => {
-    setModalOrderOpen(true)
+  const handleOpenOrder = () => {
+    setIsOrderDetailsOpen(true)
   }
-
-  const handleCloseModal = (e) => {
-    if(e.target.classList.contains('closed') || e.key === 'Escape') {
-      setModalOrderOpen(false)
-    }
-  }
-
-  document.addEventListener('keydown', handleCloseModal)
 
   const {loading, data, hasError} = state
 
@@ -58,10 +50,21 @@ const App = () => {
           <AppHeader />
           <main className='content columns'>
             <BurgerIngredients data={data} />
-            <BurgerConstructor data={data} openModal={handleOpenModal} />
-            <ModalOverlay isOpen={modalOrderOpen} closeOverlay={handleCloseModal} >
-              <OrderDetails />
-            </ModalOverlay>
+            <BurgerConstructor
+              openOrderDetails={handleOpenOrder}
+              data={data} />
+
+
+
+
+            <Modal isOpen={isOrderDetailsOpen}>
+              <OrderDetails
+                orderNumber={'034536'}/>
+            </Modal>
+
+
+
+
           </main>
         </>
       )}
