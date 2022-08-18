@@ -43,17 +43,9 @@ const App = () => {
     setIngredientDetailsOpen(true)
   }
 
-  const handleOpenOrder = () => {
-    setIsOrderDetailsOpen(true)
-  }
-
-  const handlerCloseOrder = () => {
-    setIsOrderDetailsOpen(false)
-  }
-
-  const handlerCloseDetails = () => {
-    setIngredientDetailsOpen(false)
-  }
+  const handleOpenOrder = () => setIsOrderDetailsOpen(true)
+  const handlerCloseOrder = () => setIsOrderDetailsOpen(false)
+  const handlerCloseDetails = () => setIngredientDetailsOpen(false)
 
   const {loading, data, hasError} = state
 
@@ -71,18 +63,12 @@ const App = () => {
             <BurgerConstructor
               openOrderDetails={handleOpenOrder}
               data={data} />
-
-
-
-
             <Modal
               isOpen={isOrderDetailsOpen}
               close={handlerCloseOrder}>
               <OrderDetails
                 orderNumber={'034536'}/>
             </Modal>
-
-
             <Modal
               isOpen={isIngredientDetailsOpen}
               close={handlerCloseDetails}
@@ -90,10 +76,6 @@ const App = () => {
               <IngredientDetails
                 data={data} id={ingredientId}/>
             </Modal>
-
-
-
-
           </main>
         </>
       )}
