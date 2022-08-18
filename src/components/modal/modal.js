@@ -3,11 +3,11 @@ import styles from './modal.module.css'
 import ModalOverlay from '../modal-overlay/modal-overlay'
 import ReactDOM from 'react-dom'
 
-const Modal = ({children, header, isOpen}) => {
+const Modal = ({children, header, isOpen, close}) => {
   useEffect(() => {
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        alert('ХУЛИ ЖМЕШЬ ТА!!!')
+        close()
       }
     })
   }, [])

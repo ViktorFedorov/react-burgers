@@ -39,6 +39,10 @@ const App = () => {
     setIsOrderDetailsOpen(true)
   }
 
+  const handlerCloseOrder = () => {
+    setIsOrderDetailsOpen(false)
+  }
+
   const {loading, data, hasError} = state
 
   return (
@@ -57,7 +61,9 @@ const App = () => {
 
 
 
-            <Modal isOpen={isOrderDetailsOpen}>
+            <Modal
+              close={handlerCloseOrder}
+              isOpen={isOrderDetailsOpen}>
               <OrderDetails
                 orderNumber={'034536'}/>
             </Modal>
