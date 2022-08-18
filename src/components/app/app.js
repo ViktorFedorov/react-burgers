@@ -74,7 +74,8 @@ const App = () => {
               close={handlerCloseDetails}
               header='Детали ингредиента'>
               <IngredientDetails
-                data={data} id={ingredientId}/>
+                data={data}
+                id={ingredientId} />
             </Modal>
           </main>
         </>
