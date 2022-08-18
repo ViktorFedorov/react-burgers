@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import styles from './modal.module.css'
 import ModalOverlay from '../modal-overlay/modal-overlay'
-import ReactDOM from 'react-dom'
+import {createPortal} from 'react-dom'
 
 const Modal = ({children, header, isOpen, close}) => {
   useEffect(() => {
@@ -12,7 +12,7 @@ const Modal = ({children, header, isOpen, close}) => {
     })
   }, [])
 
-  return ReactDOM.createPortal((
+  return createPortal((
     <div className={styles.container} style={{
       display: isOpen ? 'block' : 'none'
     }}>
