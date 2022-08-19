@@ -33,7 +33,8 @@ const App = () => {
         console.log(err)
         setState({
           ...state,
-          hasError: true
+          hasError: true,
+          loading: false
         })
       })
   },[])
