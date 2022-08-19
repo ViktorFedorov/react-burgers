@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import ModalOverlay from '../modal-overlay/modal-overlay'
 import {createPortal} from 'react-dom'
+import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types'
 import styles from './modal.module.css'
 
@@ -21,9 +22,11 @@ const Modal = ({children, header, isOpen, close}) => {
     }}>
       <ModalOverlay close={handleCloseButton}/>
       <div className={styles.modal}>
-        <button
+        <div
           onClick={handleCloseButton}
-          className={`mt-15 mr-10 ${styles.close}`}></button>
+          className={`mt-15 mr-10 ${styles.close}`}>
+          <CloseIcon type='primary' />
+        </div>
         <h2 className='pt-2  ml-10 mt-10 text text_type_main-large'>{header}</h2>
         {children}
       </div>

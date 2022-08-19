@@ -21,13 +21,10 @@
 }
 
 .close {
-  background: url(../../images/close.svg) transparent no-repeat center center;
   border: none;
   outline: none;
   cursor: pointer;
   position: absolute;
   top: 0;
   right: 0;
-  width: 18px;
-  height: 18px;
 }
