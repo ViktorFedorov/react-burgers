@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styles from './order-details.module.css'
 
 const OrderDetails = ({orderNumber}) => {
@@ -13,6 +14,10 @@ const OrderDetails = ({orderNumber}) => {
       </p>
     </div>
   )
+}
+
+OrderDetails.propTypes = {
+  orderNumber: PropTypes.string.isRequired
 }
 
 export default OrderDetails

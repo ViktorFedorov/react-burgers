@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react'
-import styles from './modal.module.css'
 import ModalOverlay from '../modal-overlay/modal-overlay'
 import {createPortal} from 'react-dom'
+import PropTypes from 'prop-types'
+import styles from './modal.module.css'
 
 const Modal = ({children, header, isOpen, close}) => {
   useEffect(() => {
@@ -28,6 +29,13 @@ const Modal = ({children, header, isOpen, close}) => {
       </div>
     </div>
   ), document.getElementById('modal'))
+}
+
+Modal.propTypes = {
+  children: PropTypes.element.isRequired,
+  header: PropTypes.string,
+  isOpen: PropTypes.bool.isRequired,
+  close: PropTypes.func.isRequired
 }
 
 export default Modal

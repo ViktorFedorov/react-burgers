@@ -17,7 +17,7 @@ const App = () => {
 
   const [isOrderDetailsOpen, setIsOrderDetailsOpen] = useState(false)
   const [isIngredientDetailsOpen, setIngredientDetailsOpen] = useState(false)
-  const [ingredientId, setIngredientId] = useState(null)
+  const [ingredientId, setIngredientId] = useState('')
 
   useEffect(() => {
     fetch(baseApiUrl)
@@ -50,7 +50,7 @@ const App = () => {
   const {loading, data, hasError} = state
 
   return (
-    <div>
+    <>
       {loading && 'Загружаю...'}
       {hasError && 'Ошибка загрузки данных =('}
       {!loading && !hasError && (
@@ -80,7 +80,7 @@ const App = () => {
           </main>
         </>
       )}
-    </div>
+    </>
   )
 }
 

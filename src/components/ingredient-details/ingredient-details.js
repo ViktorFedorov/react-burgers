@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import ingredientPropTypes from '../../utils/types'
 import styles from './ingredient-details.module.css'
 
 const IngredientDetails = ({data, id}) => {
@@ -29,6 +31,11 @@ const IngredientDetails = ({data, id}) => {
       </ul>
     </div>)
   )
+}
+
+IngredientDetails.propTypes = {
+  data: PropTypes.arrayOf(ingredientPropTypes).isRequired,
+  id: PropTypes.string.isRequired
 }
 
 export default IngredientDetails
