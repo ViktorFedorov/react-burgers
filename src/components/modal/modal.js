@@ -21,9 +21,7 @@ const Modal = ({children, header, isOpen, close}) => {
   }, [isOpen])
 
   return createPortal((
-    <div className={styles.container} style={{
-      display: isOpen ? 'block' : 'none'
-    }}>
+    <div className={isOpen ? styles.opened : styles.container}>
       <div className={styles.modal}>
         <div
           onClick={close}
