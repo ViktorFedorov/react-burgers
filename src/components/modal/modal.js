@@ -7,20 +7,18 @@ import styles from './modal.module.css'
 
 const Modal = ({children, header, isOpen, close}) => {
   useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        close()
+      }
+    }
+
     document.addEventListener('keydown', handleKeyDown)
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
     }
-  }, [])
-
-  const handleKeyDown = (e) => {
-    if (e.key === 'Escape') {
-      close()
-    }
-  }
-
-  const handleCloseButton = () => close()
+  }, [isOpen])
 
   return createPortal((
     <div className={styles.container} style={{
@@ -28,14 +26,14 @@ const Modal = ({children, header, isOpen, close}) => {
     }}>
       <div className={styles.modal}>
         <div
-          onClick={handleCloseButton}
+          onClick={close}
           className={`mt-15 mr-10 ${styles.close}`}>
           <CloseIcon type='primary' />
         </div>
         <h2 className='pt-2  ml-10 mt-10 text text_type_main-large'>{header}</h2>
         {children}
       </div>
-      <ModalOverlay close={handleCloseButton}/>
+      <ModalOverlay close={close}/>
     </div>
   ), document.getElementById('modal'))
 }
