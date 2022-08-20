@@ -26,7 +26,6 @@ const Modal = ({children, header, isOpen, close}) => {
     <div className={styles.container} style={{
       display: isOpen ? 'block' : 'none'
     }}>
-      <ModalOverlay close={handleCloseButton}/>
       <div className={styles.modal}>
         <div
           onClick={handleCloseButton}
@@ -36,6 +35,7 @@ const Modal = ({children, header, isOpen, close}) => {
         <h2 className='pt-2  ml-10 mt-10 text text_type_main-large'>{header}</h2>
         {children}
       </div>
+      <ModalOverlay close={handleCloseButton}/>
     </div>
   ), document.getElementById('modal'))
 }
