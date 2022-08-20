@@ -50,7 +50,8 @@ const BurgerConstructor = ({data, openOrderDetails}) => {
 }
 
 BurgerConstructor.propTypes = {
-  data: PropTypes.arrayOf(ingredientPropTypes).isRequired
+  data: PropTypes.arrayOf(ingredientPropTypes).isRequired,
+  openOrderDetails: PropTypes.func.isRequired
 }
 
 export default BurgerConstructor

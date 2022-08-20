@@ -17,7 +17,7 @@ const App = () => {
 
   const [isOrderDetailsOpen, setIsOrderDetailsOpen] = useState(false)
   const [isIngredientDetailsOpen, setIngredientDetailsOpen] = useState(false)
-  const [ingredientId, setIngredientId] = useState('')
+  const [ingredient, setIngredient] = useState({})
 
   useEffect(() => {
     fetch(baseApiUrl)
@@ -39,8 +39,8 @@ const App = () => {
       })
   },[])
 
-  const handlerIngredientClick = (id) => {
-    setIngredientId(id)
+  const handlerIngredientClick = (ingredient) => {
+    setIngredient(ingredient)
     setIngredientDetailsOpen(true)
   }
 
@@ -76,7 +76,7 @@ const App = () => {
               header='Детали ингредиента'>
               <IngredientDetails
                 data={data}
-                id={ingredientId} />
+                ingredient={ingredient} />
             </Modal>
           </main>
         </>

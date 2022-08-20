@@ -3,10 +3,12 @@ import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types'
 import styles from './ingredient-item.module.css'
 
-const IngredientItem = ({id, name, price, image, counter, onClick}) => {
+const IngredientItem = ({counter, onClick, ingredient}) => {
+  const {image, name, price} = ingredient
+
   return (
     <li
-      onClick={() => onClick(id)}
+      onClick={() => onClick(ingredient)}
       className={styles.item}>
       <img src={image} alt={name} className={`ml-4 mr-4 ${styles.image}`}/>
       <div className={styles.price}>
@@ -22,10 +24,9 @@ const IngredientItem = ({id, name, price, image, counter, onClick}) => {
 }
 
 IngredientItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  image: PropTypes.string.isRequired,
   counter: PropTypes.element.isRequired,
+  onClick: PropTypes.func.isRequired,
+  ingredient: PropTypes.object.isRequired
 }
 
 export default IngredientItem

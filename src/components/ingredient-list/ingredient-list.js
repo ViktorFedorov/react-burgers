@@ -16,6 +16,7 @@ const IngredientList = ({title, ingredients, onClick}) => {
             const {_id, name, price, image} = ingredient
             return (
               <IngredientItem
+                ingredient={ingredient}
                 onClick={onClick}
                 key={_id}
                 id={_id}
@@ -33,6 +34,7 @@ const IngredientList = ({title, ingredients, onClick}) => {
 
 IngredientList.propTypes = {
   title: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
   ingredients: PropTypes.arrayOf(ingredientPropTypes).isRequired
 }
 
