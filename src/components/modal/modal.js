@@ -7,6 +7,8 @@ import styles from './modal.module.css'
 
 const Modal = ({children, header, isOpen, close}) => {
   useEffect(() => {
+    if (!isOpen) return
+
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
         close()
