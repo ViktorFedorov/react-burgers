@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import ingredientPropTypes from '../../utils/types'
 import styles from './burger-constructor.module.css'
 
-const BurgerConstructor = ({data}) => {
+const BurgerConstructor = ({data, openOrderDetails}) => {
   return (
     <div className='pl-5 pt-20'>
       <div className={`mt-4 ${styles.item} ${styles.bun}`}>
@@ -42,13 +42,16 @@ const BurgerConstructor = ({data}) => {
           type='bottom'
           isLocked={true} />
       </div>
-      <Total total={610} />
+      <Total
+        openOrderDetails={openOrderDetails}
+        total={610} />
     </div>
   )
 }
 
 BurgerConstructor.propTypes = {
-  data: PropTypes.arrayOf(ingredientPropTypes).isRequired
+  data: PropTypes.arrayOf(ingredientPropTypes).isRequired,
+  openOrderDetails: PropTypes.func.isRequired
 }
 
 export default BurgerConstructor

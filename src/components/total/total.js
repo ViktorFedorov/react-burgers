@@ -3,14 +3,14 @@ import {Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-comp
 import PropTypes from 'prop-types'
 import styles from './total.module.css'
 
-const Total = ({total}) => {
+const Total = ({total, openOrderDetails}) => {
   return (
     <div className={`mt-10 pr-4 ${styles.total}`}>
       <div className={`mr-10 ${styles.price}`}>
         <p className='mr-2 text text_type_digits-medium'>{total}</p>
         <CurrencyIcon type='primary' />
       </div>
-      <Button type='primary' size='large'>
+      <Button type='primary' size='large' onClick={openOrderDetails} >
         Оформить заказ
       </Button>
     </div>
@@ -18,7 +18,8 @@ const Total = ({total}) => {
 }
 
 Total.propTypes = {
-  total: PropTypes.number.isRequired
+  total: PropTypes.number.isRequired,
+  openOrderDetails: PropTypes.func.isRequired
 }
 
 export default Total

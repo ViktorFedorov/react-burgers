@@ -6,7 +6,7 @@ import ingredientPropTypes from'../../utils/types'
 import styles from './ingredient-list.module.css'
 
 
-const IngredientList = ({title, ingredients}) => {
+const IngredientList = ({title, ingredients, onClick}) => {
   return (
     <>
       <h2 className='text text_type_main-medium mt-10'>{title}</h2>
@@ -16,7 +16,10 @@ const IngredientList = ({title, ingredients}) => {
             const {_id, name, price, image} = ingredient
             return (
               <IngredientItem
+                ingredient={ingredient}
+                onClick={onClick}
                 key={_id}
+                id={_id}
                 counter={<Counter count={1} />}
                 name={name}
                 price={price}
@@ -31,6 +34,7 @@ const IngredientList = ({title, ingredients}) => {
 
 IngredientList.propTypes = {
   title: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
   ingredients: PropTypes.arrayOf(ingredientPropTypes).isRequired
 }
 
