@@ -2,12 +2,11 @@ import React, {useState, useEffect} from 'react'
 import AppHeader from '../app-header/app-header'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients'
 import BurgerConstructor from '../burger-constructor/burger-constructor'
-import {checkResponse} from '../../utils/utils'
-import {baseApiUrl} from '../../utils/constants'
 import Modal from '../modal/modal'
 import OrderDetails from '../order-details/order-details'
 import IngredientDetails from '../ingredient-details/ingredient-details'
-import {DataContext} from '../../context/appContext'
+import {getData} from '../../utils/api'
+import {BurgerIngredientsContext} from '../../context/burger-ingredients-context'
 
 const App = () => {
   const [state, setState] = useState({
@@ -21,8 +20,7 @@ const App = () => {
   const [ingredient, setIngredient] = useState({})
 
   useEffect(() => {
-    fetch(baseApiUrl)
-      .then(checkResponse)
+    getData()
       .then(({data}) => {
         setState({
           ...state,
@@ -59,13 +57,12 @@ const App = () => {
         <>
           <AppHeader />
           <main className='content columns'>
-            <DataContext.Provider value={state.data}>
+            <BurgerIngredientsContext.Provider value={state.data}>
               <BurgerIngredients
-                onClick={handlerIngredientClick}
-                data={data} />
+                onClick={handlerIngredientClick} />
               <BurgerConstructor
                 openOrderDetails={handleOpenOrder} />
-            </DataContext.Provider>
+            </BurgerIngredientsContext.Provider>
             <Modal
               isOpen={isOrderDetailsOpen}
               close={handlerCloseOrder}>

@@ -1,11 +1,13 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Tabs from '../tabs/tabs'
 import IngredientList from '../ingredient-list/ingredient-list'
 import PropTypes from 'prop-types'
 import ingredientPropTypes from '../../utils/types'
+import {BurgerIngredientsContext} from '../../context/burger-ingredients-context'
 import styles from './burger-ingredients.module.css'
 
-const BurgerIngredients = ({data, onClick}) => {
+const BurgerIngredients = ({onClick}) => {
+  const data = useContext(BurgerIngredientsContext)
 
   const buns = data.filter(ingredient => ingredient.type === 'bun')
   const sauce = data.filter(ingredient => ingredient.type === 'sauce')

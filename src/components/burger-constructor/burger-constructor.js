@@ -3,11 +3,15 @@ import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-compon
 import Total from '../total/total'
 import PropTypes from 'prop-types'
 import ingredientPropTypes from '../../utils/types'
-import {DataContext} from '../../context/appContext'
+import {BurgerIngredientsContext} from '../../context/burger-ingredients-context'
 import styles from './burger-constructor.module.css'
 
 const BurgerConstructor = ({openOrderDetails}) => {
-  const data = useContext(DataContext)
+  const data = useContext(BurgerIngredientsContext)
+
+  let sum = data.reduce((acc, item) => {
+    return acc + item.price
+  }, 0)
 
   return (
     <div className='pl-5 pt-20'>
@@ -48,7 +52,7 @@ const BurgerConstructor = ({openOrderDetails}) => {
       </div>
       <Total
         openOrderDetails={openOrderDetails}
-        total={610} />
+        total={sum} />
     </div>
   )
 }
