@@ -60,15 +60,9 @@ const App = () => {
             <BurgerIngredientsContext.Provider value={state.data}>
               <BurgerIngredients
                 onClick={handlerIngredientClick} />
-              <BurgerConstructor
-                openOrderDetails={handleOpenOrder} />
+              <BurgerConstructor />
             </BurgerIngredientsContext.Provider>
-            <Modal
-              isOpen={isOrderDetailsOpen}
-              close={handlerCloseOrder}>
-              <OrderDetails
-                orderNumber={'034536'}/>
-            </Modal>
+
             <Modal
               isOpen={isIngredientDetailsOpen}
               close={handlerCloseDetails}

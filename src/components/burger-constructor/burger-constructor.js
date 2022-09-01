@@ -1,13 +1,20 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components'
 import Total from '../total/total'
 import PropTypes from 'prop-types'
 import ingredientPropTypes from '../../utils/types'
 import {BurgerIngredientsContext} from '../../context/burger-ingredients-context'
+import {sendData} from '../../utils/api'
 import styles from './burger-constructor.module.css'
+import OrderDetails from '../order-details/order-details'
+import Modal from '../modal/modal'
 
-const BurgerConstructor = ({openOrderDetails}) => {
+const BurgerConstructor = () => {
   const data = useContext(BurgerIngredientsContext)
+
+  const [modalData, setModalData] = useState(null)
+  const [idOfIngredient, setIdOfIngredient] = useState(null)
+  const [isOpen, setIsOpen] = useState(false)
 
   let sum = data.reduce((acc, item) => {
     return acc + item.price
@@ -15,6 +22,18 @@ const BurgerConstructor = ({openOrderDetails}) => {
 
   const bun = data.filter(item => item.type === 'bun')[0]
   const ingredients = data.filter(item => item.type !== 'bun')
+
+  useEffect(() => {
+    const res = data.map(item => item._id)
+    setIdOfIngredient(res)
+  }, [data])
+
+  const handleOpenOrder = () => {
+    sendData(idOfIngredient)
+      .then(setModalData)
+      .then(() => setIsOpen(true))
+      .catch(console.log)
+  }
 
   return (
     <div className='pl-5 pt-20'>
@@ -52,15 +71,19 @@ const BurgerConstructor = ({openOrderDetails}) => {
           isLocked={true} />
       </div>
       <Total
-        openOrderDetails={openOrderDetails}
+        openOrderDetails={handleOpenOrder}
         total={sum} />
+      <Modal
+        isOpen={isOpen}
+        close={() => setIsOpen(false)}>
+        {modalData && <OrderDetails orderNumber={modalData.order.number}/>}
+      </Modal>
     </div>
   )
 }
 
 BurgerConstructor.propTypes = {
   data: PropTypes.arrayOf(ingredientPropTypes).isRequired,
-  openOrderDetails: PropTypes.func.isRequired
 }
 
 export default BurgerConstructor
