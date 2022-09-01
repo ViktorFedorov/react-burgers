@@ -7,6 +7,7 @@ import {baseApiUrl} from '../../utils/constants'
 import Modal from '../modal/modal'
 import OrderDetails from '../order-details/order-details'
 import IngredientDetails from '../ingredient-details/ingredient-details'
+import {DataContext} from '../../context/appContext'
 
 const App = () => {
   const [state, setState] = useState({
@@ -58,12 +59,13 @@ const App = () => {
         <>
           <AppHeader />
           <main className='content columns'>
-            <BurgerIngredients
-              onClick={handlerIngredientClick}
-              data={data} />
-            <BurgerConstructor
-              openOrderDetails={handleOpenOrder}
-              data={data} />
+            <DataContext.Provider value={state.data}>
+              <BurgerIngredients
+                onClick={handlerIngredientClick}
+                data={data} />
+              <BurgerConstructor
+                openOrderDetails={handleOpenOrder} />
+            </DataContext.Provider>
             <Modal
               isOpen={isOrderDetailsOpen}
               close={handlerCloseOrder}>

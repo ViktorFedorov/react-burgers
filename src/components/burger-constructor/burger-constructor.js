@@ -1,11 +1,14 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components'
 import Total from '../total/total'
 import PropTypes from 'prop-types'
 import ingredientPropTypes from '../../utils/types'
+import {DataContext} from '../../context/appContext'
 import styles from './burger-constructor.module.css'
 
-const BurgerConstructor = ({data, openOrderDetails}) => {
+const BurgerConstructor = ({openOrderDetails}) => {
+  const data = useContext(DataContext)
+
   return (
     <div className='pl-5 pt-20'>
       <div className={`mt-4 ${styles.item} ${styles.bun}`}>
@@ -19,8 +22,9 @@ const BurgerConstructor = ({data, openOrderDetails}) => {
       <ul className={`pr-4 ${styles.scroll} ${styles.list}`}>
         {
           data.map(ingredient => {
-            const {_id, name, image_mobile, price} = ingredient
-            if (ingredient.type !== 'bun') {
+            const {_id, name, image_mobile, price, type} = ingredient
+
+            if (type !== 'bun') {
               return (
                 <li key={_id} className={`mt-4 ${styles.item}`}>
                   <div className={styles.dropicon}></div>
