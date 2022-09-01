@@ -13,40 +13,41 @@ const BurgerConstructor = ({openOrderDetails}) => {
     return acc + item.price
   }, 0)
 
+  const bun = data.filter(item => item.type === 'bun')[0]
+  const ingredients = data.filter(item => item.type !== 'bun')
+
   return (
     <div className='pl-5 pt-20'>
       <div className={`mt-4 ${styles.item} ${styles.bun}`}>
         <ConstructorElement
-          text={`${data[0].name} (верх)`}
-          thumbnail={data[0].image_mobile}
-          price={data[0].price}
+          text={`${bun.name} (верх)`}
+          thumbnail={bun.image_mobile}
+          price={bun.price}
           type='top'
           isLocked={true} />
       </div>
       <ul className={`pr-4 ${styles.scroll} ${styles.list}`}>
         {
-          data.map(ingredient => {
-            const {_id, name, image_mobile, price, type} = ingredient
+          ingredients.map(ingredient => {
+            const {_id, name, image_mobile, price} = ingredient
 
-            if (type !== 'bun') {
-              return (
-                <li key={_id} className={`mt-4 ${styles.item}`}>
-                  <div className={styles.dropicon}></div>
-                  <ConstructorElement
-                    text={name}
-                    thumbnail={image_mobile}
-                    price={price} />
-                </li>
-              )
-            }
+            return (
+              <li key={_id} className={`mt-4 ${styles.item}`}>
+                <div className={styles.dragndrop_icon}></div>
+                <ConstructorElement
+                  text={name}
+                  thumbnail={image_mobile}
+                  price={price} />
+              </li>
+            )
           })
         }
       </ul>
       <div className={`mt-4 ${styles.item} ${styles.bun}`}>
         <ConstructorElement
-          text={`${data[0].name} (низ)`}
-          thumbnail={data[0].image_mobile}
-          price={data[0].price}
+          text={`${bun.name} (низ)`}
+          thumbnail={bun.image_mobile}
+          price={bun.price}
           type='bottom'
           isLocked={true} />
       </div>
