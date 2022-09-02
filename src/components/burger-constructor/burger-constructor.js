@@ -1,8 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react'
 import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components'
 import Total from '../total/total'
-import PropTypes from 'prop-types'
-import ingredientPropTypes from '../../utils/types'
 import {BurgerIngredientsContext} from '../../context/burger-ingredients-context'
 import {sendData} from '../../utils/api'
 import styles from './burger-constructor.module.css'
@@ -80,10 +78,6 @@ const BurgerConstructor = () => {
       </Modal>
     </div>
   )
-}
-
-BurgerConstructor.propTypes = {
-  data: PropTypes.arrayOf(ingredientPropTypes).isRequired,
 }
 
 export default BurgerConstructor
