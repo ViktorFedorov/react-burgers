@@ -16,10 +16,6 @@ const BurgerIngredients = ({onClick}) => {
   const sauceSection = useRef(null)
   const mainSection = useRef(null)
 
-  useEffect(() => {
-    mainSection.current.scrollIntoView({block: "start", behavior: "smooth"})
-  }, [data])
-
   return (
     <section className={styles.ingredients}>
       <h1 className='text text_type_main-large mt-10'>
