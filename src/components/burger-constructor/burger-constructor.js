@@ -1,11 +1,11 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useContext, useEffect, useMemo, useState} from 'react'
 import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components'
 import Total from '../total/total'
 import {BurgerIngredientsContext} from '../../context/burger-ingredients-context'
 import {sendData} from '../../utils/api'
-import styles from './burger-constructor.module.css'
 import OrderDetails from '../order-details/order-details'
 import Modal from '../modal/modal'
+import styles from './burger-constructor.module.css'
 
 const BurgerConstructor = () => {
   const data = useContext(BurgerIngredientsContext)
@@ -14,12 +14,19 @@ const BurgerConstructor = () => {
   const [idOfIngredient, setIdOfIngredient] = useState(null)
   const [isOpen, setIsOpen] = useState(false)
 
-  let sum = data.reduce((acc, item) => {
-    return acc + item.price
-  }, 0)
+  const sum = useMemo(() => {
+    return data.reduce((acc, item) => {
+      return acc + item.price
+    }, 0)
+  }, [data])
 
-  const bun = data.filter(item => item.type === 'bun')[0]
-  const ingredients = data.filter(item => item.type !== 'bun')
+  const bun = useMemo(() => {
+    return data.filter(item => item.type === 'bun')[0]
+  }, [data])
+
+  const ingredients = useMemo(() => {
+    return data.filter(item => item.type !== 'bun')
+  }, [data])
 
   useEffect(() => {
     const res = data.map(item => item._id)

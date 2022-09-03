@@ -3,7 +3,6 @@ import AppHeader from '../app-header/app-header'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients'
 import BurgerConstructor from '../burger-constructor/burger-constructor'
 import Modal from '../modal/modal'
-import OrderDetails from '../order-details/order-details'
 import IngredientDetails from '../ingredient-details/ingredient-details'
 import {getData} from '../../utils/api'
 import {BurgerIngredientsContext} from '../../context/burger-ingredients-context'
@@ -15,7 +14,6 @@ const App = () => {
     hasError: false
   })
 
-  const [isOrderDetailsOpen, setIsOrderDetailsOpen] = useState(false)
   const [isIngredientDetailsOpen, setIngredientDetailsOpen] = useState(false)
   const [ingredient, setIngredient] = useState({})
 
@@ -59,7 +57,6 @@ const App = () => {
                 onClick={handlerIngredientClick} />
               <BurgerConstructor />
             </BurgerIngredientsContext.Provider>
-
             <Modal
               isOpen={isIngredientDetailsOpen}
               close={handlerCloseDetails}
