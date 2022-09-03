@@ -43,10 +43,7 @@ const App = () => {
     setIngredientDetailsOpen(true)
   }
 
-  const handleOpenOrder = () => setIsOrderDetailsOpen(true)
-  const handlerCloseOrder = () => setIsOrderDetailsOpen(false)
   const handlerCloseDetails = () => setIngredientDetailsOpen(false)
-
   const {loading, data, hasError} = state
 
   return (

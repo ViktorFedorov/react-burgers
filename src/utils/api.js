@@ -1,20 +1,19 @@
 import {checkResponse} from './utils'
 
 const options = {
-  baseApiUrl: 'https://norma.nomoreparties.space/api/ingredients',
-  addOrderUrl: 'https://norma.nomoreparties.space/api/orders',
+  baseApiUrl: 'https://norma.nomoreparties.space/api',
   headers: {
     'Content-Type': 'application/json',
   }
 }
 
 const getData = () => {
-  return fetch(options.baseApiUrl)
+  return fetch(`${options.baseApiUrl}/ingredients`)
     .then(checkResponse)
 }
 
 const sendData = (idsArray) => {
-  return fetch(options.addOrderUrl, {
+  return fetch(`${options.baseApiUrl}/orders`, {
     method: 'POST',
     headers: options.headers,
     body: JSON.stringify({
