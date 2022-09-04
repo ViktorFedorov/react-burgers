@@ -8,7 +8,7 @@
   align-items: center;
 }
 
-.dropicon {
+.dragndrop_icon {
   height: 18px;
   width: 13px;
   background: url(../../images/dnd_icon.svg) no-repeat center center;

@@ -2,11 +2,10 @@ import React, {useState, useEffect} from 'react'
 import AppHeader from '../app-header/app-header'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients'
 import BurgerConstructor from '../burger-constructor/burger-constructor'
-import {checkResponse} from '../../utils/utils'
-import {baseApiUrl} from '../../utils/constants'
 import Modal from '../modal/modal'
-import OrderDetails from '../order-details/order-details'
 import IngredientDetails from '../ingredient-details/ingredient-details'
+import {getData} from '../../utils/api'
+import {BurgerIngredientsContext} from '../../context/burger-ingredients-context'
 
 const App = () => {
   const [state, setState] = useState({
@@ -15,13 +14,11 @@ const App = () => {
     hasError: false
   })
 
-  const [isOrderDetailsOpen, setIsOrderDetailsOpen] = useState(false)
   const [isIngredientDetailsOpen, setIngredientDetailsOpen] = useState(false)
   const [ingredient, setIngredient] = useState({})
 
   useEffect(() => {
-    fetch(baseApiUrl)
-      .then(checkResponse)
+    getData()
       .then(({data}) => {
         setState({
           ...state,
@@ -44,10 +41,7 @@ const App = () => {
     setIngredientDetailsOpen(true)
   }
 
-  const handleOpenOrder = () => setIsOrderDetailsOpen(true)
-  const handlerCloseOrder = () => setIsOrderDetailsOpen(false)
   const handlerCloseDetails = () => setIngredientDetailsOpen(false)
-
   const {loading, data, hasError} = state
 
   return (
@@ -58,18 +52,11 @@ const App = () => {
         <>
           <AppHeader />
           <main className='content columns'>
-            <BurgerIngredients
-              onClick={handlerIngredientClick}
-              data={data} />
-            <BurgerConstructor
-              openOrderDetails={handleOpenOrder}
-              data={data} />
-            <Modal
-              isOpen={isOrderDetailsOpen}
-              close={handlerCloseOrder}>
-              <OrderDetails
-                orderNumber={'034536'}/>
-            </Modal>
+            <BurgerIngredientsContext.Provider value={state.data}>
+              <BurgerIngredients
+                onClick={handlerIngredientClick} />
+              <BurgerConstructor />
+            </BurgerIngredientsContext.Provider>
             <Modal
               isOpen={isIngredientDetailsOpen}
               close={handlerCloseDetails}
