@@ -1,37 +1,34 @@
-import React, {useContext, useEffect, useMemo, useState} from 'react'
+import React, {useEffect, useMemo, useState} from 'react'
 import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components'
 import Total from '../total/total'
-import {BurgerIngredientsContext} from '../../context/burger-ingredients-context'
 import {sendData} from '../../utils/api'
 import OrderDetails from '../order-details/order-details'
 import Modal from '../modal/modal'
 import styles from './burger-constructor.module.css'
 
-const BurgerConstructor = () => {
-  const data = useContext(BurgerIngredientsContext)
-
+const BurgerConstructor = ({ingredients}) => {
   const [modalData, setModalData] = useState(null)
   const [idOfIngredient, setIdOfIngredient] = useState(null)
   const [isOpen, setIsOpen] = useState(false)
 
   const sum = useMemo(() => {
-    return data.reduce((acc, item) => {
+    return ingredients.reduce((acc, item) => {
       return acc + item.price
     }, 0)
-  }, [data])
+  }, [ingredients])
 
   const bun = useMemo(() => {
-    return data.filter(item => item.type === 'bun')[0]
-  }, [data])
+    return ingredients.filter(item => item.type === 'bun')[0]
+  }, [ingredients])
 
-  const ingredients = useMemo(() => {
-    return data.filter(item => item.type !== 'bun')
-  }, [data])
+  const ingredientsWithoutBuns = useMemo(() => {
+    return ingredients.filter(item => item.type !== 'bun')
+  }, [ingredients])
 
   useEffect(() => {
-    const res = data.map(item => item._id)
+    const res = ingredients.map(item => item._id)
     setIdOfIngredient(res)
-  }, [data])
+  }, [ingredients])
 
   const handleOpenOrder = () => {
     sendData(idOfIngredient)
@@ -52,7 +49,7 @@ const BurgerConstructor = () => {
       </div>
       <ul className={`pr-4 ${styles.scroll} ${styles.list}`}>
         {
-          ingredients.map(ingredient => {
+          ingredientsWithoutBuns.map(ingredient => {
             const {_id, name, image_mobile, price} = ingredient
 
             return (

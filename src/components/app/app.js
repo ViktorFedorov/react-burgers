@@ -4,7 +4,6 @@ import BurgerIngredients from '../burger-ingredients/burger-ingredients'
 import BurgerConstructor from '../burger-constructor/burger-constructor'
 import Modal from '../modal/modal'
 import IngredientDetails from '../ingredient-details/ingredient-details'
-import {BurgerIngredientsContext} from '../../context/burger-ingredients-context'
 import {useDispatch, useSelector} from 'react-redux'
 import {getIngredientsThunk} from '../../services/actions'
 
@@ -34,11 +33,10 @@ const App = () => {
         <>
           <AppHeader />
           <main className='content columns'>
-            <BurgerIngredientsContext.Provider value={ingredients}>
               <BurgerIngredients
+                ingredients={ingredients}
                 onClick={handlerIngredientClick} />
-              {/*<BurgerConstructor />*/}
-            </BurgerIngredientsContext.Provider>
+              {/*<BurgerConstructor ingredients={ingredients} />*/}
             <Modal
               isOpen={isIngredientDetailsOpen}
               close={handlerCloseDetails}
