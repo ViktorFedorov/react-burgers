@@ -24,13 +24,13 @@ const BurgerIngredients = ({onClick}) => {
       <Tabs bunsRef={bunsSection} sauseRef={sauceSection} mainRef={mainSection} />
       <div className={styles.scroll}>
         <div ref={bunsSection}>
-          <IngredientList title='Булки' ingredients={buns} onClick={onClick}/>
+          <IngredientList title='Булки' ingredients={buns} onClick={onClick} />
         </div>
         <div ref={sauceSection}>
-          <IngredientList title='Соусы' ingredients={sauce} onClick={onClick}/>
+          <IngredientList title='Соусы' ingredients={sauce} onClick={onClick} />
         </div>
         <div ref={mainSection}>
-          <IngredientList title='Начинки' ingredients={main} onClick={onClick}/>
+          <IngredientList title='Начинки' ingredients={main} onClick={onClick} />
         </div>
       </div>
     </section>
