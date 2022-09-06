@@ -4,36 +4,19 @@ import BurgerIngredients from '../burger-ingredients/burger-ingredients'
 import BurgerConstructor from '../burger-constructor/burger-constructor'
 import Modal from '../modal/modal'
 import IngredientDetails from '../ingredient-details/ingredient-details'
-import {getData} from '../../utils/api'
 import {BurgerIngredientsContext} from '../../context/burger-ingredients-context'
+import {useDispatch, useSelector} from 'react-redux'
+import {getIngredientsThunk} from '../../services/actions'
 
 const App = () => {
-  const [state, setState] = useState({
-    data: [],
-    loading: true,
-    hasError: false
-  })
+  const dispatch = useDispatch()
+  const {ingredients, loading, error} = useSelector(store => store.ingredients)
 
   const [isIngredientDetailsOpen, setIngredientDetailsOpen] = useState(false)
   const [ingredient, setIngredient] = useState({})
 
   useEffect(() => {
-    getData()
-      .then(({data}) => {
-        setState({
-          ...state,
-          data,
-          loading: false
-        })
-      })
-      .catch((err) => {
-        console.log(err)
-        setState({
-          ...state,
-          hasError: true,
-          loading: false
-        })
-      })
+    dispatch(getIngredientsThunk())
   },[])
 
   const handlerIngredientClick = (ingredient) => {
@@ -42,27 +25,26 @@ const App = () => {
   }
 
   const handlerCloseDetails = () => setIngredientDetailsOpen(false)
-  const {loading, data, hasError} = state
 
   return (
     <>
       {loading && 'Загружаю...'}
-      {hasError && 'Ошибка загрузки данных =('}
-      {!loading && !hasError && (
+      {error && 'Ошибка загрузки данных =('}
+      {!loading && !error && (
         <>
           <AppHeader />
           <main className='content columns'>
-            <BurgerIngredientsContext.Provider value={state.data}>
+            <BurgerIngredientsContext.Provider value={ingredients}>
               <BurgerIngredients
                 onClick={handlerIngredientClick} />
-              <BurgerConstructor />
+              {/*<BurgerConstructor />*/}
             </BurgerIngredientsContext.Provider>
             <Modal
               isOpen={isIngredientDetailsOpen}
               close={handlerCloseDetails}
               header='Детали ингредиента'>
               <IngredientDetails
-                data={data}
+                data={ingredients}
                 ingredient={ingredient} />
             </Modal>
           </main>
