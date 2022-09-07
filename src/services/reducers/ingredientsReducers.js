@@ -1,4 +1,4 @@
-import {GET_INGREDIENTS, GET_INGREDIENTS_SUCCESS} from '../constants'
+import {GET_INGREDIENTS, GET_INGREDIENTS_SUCCESS} from '../actions/ingredients'
 
 const initialState = {
   loading: false,
@@ -14,7 +14,7 @@ export const ingredientsReducer = (state = initialState, action) => {
     case GET_INGREDIENTS:
       return {...state, loading: true, error: false}
     case GET_INGREDIENTS_SUCCESS:
-      return {...state, loading: false, ingredients: action.payload}
+      return {...state, loading: false, ingredients: action.ingredients}
     default:
       return state
   }

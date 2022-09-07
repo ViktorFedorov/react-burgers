@@ -5,7 +5,7 @@ import BurgerConstructor from '../burger-constructor/burger-constructor'
 import Modal from '../modal/modal'
 import IngredientDetails from '../ingredient-details/ingredient-details'
 import {useDispatch, useSelector} from 'react-redux'
-import {getIngredientsThunk} from '../../services/actions'
+import {getIngredientsThunk} from '../../services/actions/ingredients'
 
 const App = () => {
   const dispatch = useDispatch()
