@@ -1,4 +1,4 @@
-import {GET_INGREDIENTS, GET_INGREDIENTS_SUCCESS} from '../actions/ingredients'
+import {GET_INGREDIENTS, GET_INGREDIENTS_SUCCESS, GET_INGREDIENTS_FAILED} from '../constants'
 
 const initialState = {
   loading: false,

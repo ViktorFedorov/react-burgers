@@ -1,8 +1,5 @@
+import {GET_INGREDIENTS, GET_INGREDIENTS_SUCCESS, GET_INGREDIENTS_FAILED} from '../constants'
 import {getData} from '../../utils/api'
-
-export const GET_INGREDIENTS = 'GET_INGREDIENTS'
-export const GET_INGREDIENTS_FAILED = 'GET_INGREDIENTS_FILED'
-export const GET_INGREDIENTS_SUCCESS = 'GET_INGREDIENTS_SUCCESS'
 
 const getIngredients = () => ({type: GET_INGREDIENTS})
 const getIngredientsSuccess = (ingredients) => ({type: GET_INGREDIENTS_SUCCESS, ingredients})
