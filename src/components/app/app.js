@@ -1,29 +1,32 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import AppHeader from '../app-header/app-header'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients'
 import BurgerConstructor from '../burger-constructor/burger-constructor'
 import Modal from '../modal/modal'
 import IngredientDetails from '../ingredient-details/ingredient-details'
 import {useDispatch, useSelector} from 'react-redux'
-import {getIngredientsThunk} from '../../services/actions/ingredients'
+import {
+  closeIngredientDetails,
+  getIngredientsThunk,
+  setIngredientDetails
+} from '../../services/actions/ingredients'
 
 const App = () => {
   const dispatch = useDispatch()
   const {ingredients, loading, error} = useSelector(store => store.ingredients)
 
-  const [isIngredientDetailsOpen, setIngredientDetailsOpen] = useState(false)
-  const [ingredient, setIngredient] = useState({})
+  const ingredient = useSelector(state => state.detail.ingredient)
+  const open = useSelector(state => state.detail.open)
 
-  useEffect(() => {
+    useEffect(() => {
     dispatch(getIngredientsThunk())
   },[])
 
   const handlerIngredientClick = (ingredient) => {
-    setIngredient(ingredient)
-    setIngredientDetailsOpen(true)
+    dispatch(setIngredientDetails(ingredient))
   }
 
-  const handlerCloseDetails = () => setIngredientDetailsOpen(false)
+  const handlerCloseDetails = () => dispatch(closeIngredientDetails())
 
   return (
     <>
@@ -38,11 +41,10 @@ const App = () => {
                 onClick={handlerIngredientClick} />
               {/*<BurgerConstructor ingredients={ingredients} />*/}
             <Modal
-              isOpen={isIngredientDetailsOpen}
+              isOpen={open}
               close={handlerCloseDetails}
               header='Детали ингредиента'>
               <IngredientDetails
-                data={ingredients}
                 ingredient={ingredient} />
             </Modal>
           </main>
