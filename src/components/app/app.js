@@ -14,17 +14,12 @@ import {
 const App = () => {
   const dispatch = useDispatch()
   const {ingredients, loading, error} = useSelector(store => store.ingredients)
-
   const ingredient = useSelector(state => state.detail.ingredient)
   const open = useSelector(state => state.detail.open)
 
-    useEffect(() => {
-    dispatch(getIngredientsThunk())
-  },[])
+  useEffect(() => (dispatch(getIngredientsThunk())),[])
 
-  const handlerIngredientClick = (ingredient) => {
-    dispatch(setIngredientDetails(ingredient))
-  }
+  const handlerIngredientClick = (ingredient) => dispatch(setIngredientDetails(ingredient))
 
   const handlerCloseDetails = () => dispatch(closeIngredientDetails())
 
@@ -39,7 +34,7 @@ const App = () => {
               <BurgerIngredients
                 ingredients={ingredients}
                 onClick={handlerIngredientClick} />
-              {/*<BurgerConstructor ingredients={ingredients} />*/}
+              <BurgerConstructor ingredients={ingredients} />
             <Modal
               isOpen={open}
               close={handlerCloseDetails}
