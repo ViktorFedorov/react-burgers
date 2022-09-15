@@ -21,6 +21,5 @@ export const getIngredientsThunk = () => {
       .then(({data}) => {
         dispatch(getIngredientsSuccess(data))
       })
-      .catch(dispatch(getIngredientsFailed()))
   }
 }

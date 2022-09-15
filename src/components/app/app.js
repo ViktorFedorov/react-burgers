@@ -31,10 +31,10 @@ const App = () => {
         <>
           <AppHeader />
           <main className='content columns'>
-              <BurgerIngredients
-                ingredients={ingredients}
-                onClick={handlerIngredientClick} />
-              <BurgerConstructor ingredients={ingredients} />
+              {/*<BurgerIngredients*/}
+              {/*  ingredients={ingredients}*/}
+              {/*  onClick={handlerIngredientClick} />*/}
+              <BurgerConstructor />
             <Modal
               isOpen={open}
               close={handlerCloseDetails}
