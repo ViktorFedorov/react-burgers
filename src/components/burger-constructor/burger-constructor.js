@@ -9,19 +9,19 @@ import {useDispatch, useSelector} from 'react-redux'
 import {getIngredientsThunk} from '../../services/actions/ingredients'
 import AppHeader from '../app-header/app-header'
 import IngredientDetails from '../ingredient-details/ingredient-details'
+import {closeOrderDetails, sendOrderDataThunk, setOrdersId} from '../../services/actions/order-details'
 
 const BurgerConstructor = () => {
-  
-
   const {ingredients, loading, error} = useSelector(store => store.ingredients)
+  const {order, open, ordersId} = useSelector(store => store.order)
+  const dispatch = useDispatch()
 
+  const sum = useMemo(() => {
+    return ingredients.reduce((acc, item) => {
+      return acc + item.price
+    }, 0)
+  }, [ingredients])
 
-  // const sum = useMemo(() => {
-  //   return ingredients.reduce((acc, item) => {
-  //     return acc + item.price
-  //   }, 0)
-  // }, [ingredients])
-  //
   const bun = useMemo(() => {
     return ingredients.filter(item => item.type === 'bun')[0]
   }, [ingredients, loading, error])
@@ -30,20 +30,19 @@ const BurgerConstructor = () => {
     return ingredients.filter(item => item.type !== 'bun')
   }, [ingredients, loading, error])
 
-  // useEffect(() => {
-  //   const res = ingredients.map(item => item._id)
-  //   setIdOfIngredient(res)
-  // }, [ingredients])
-  //
-  // const handleOpenOrder = () => {
-  //   sendData(idOfIngredient)
-  //     .then(setModalData)
-  //     .then(() => setIsOpen(true))
-  //     .catch(console.log)
-  // }
+  useEffect(() => {
+    const res = ingredients.map(item => item._id)
+    dispatch(setOrdersId(res))
+  }, [])
 
-  console.log(ingredients)
-  console.log(bun)
+  const handleOpenOrder = (ordersIds) => {
+    dispatch(sendOrderDataThunk(ordersIds))
+  }
+
+  const handleClose = () => {
+    dispatch(closeOrderDetails())
+  }
+
   return (
     <>
       {loading && 'Загружаю...'}
@@ -76,21 +75,21 @@ const BurgerConstructor = () => {
             }
           </ul>
           <div className={`mt-4 ${styles.item} ${styles.bun}`}>
-            {/*<ConstructorElement*/}
-            {/*  text={`${bun.name} (низ)`}*/}
-            {/*  thumbnail={bun.image_mobile}*/}
-            {/*  price={bun.price}*/}
-            {/*  type='bottom'*/}
-            {/*  isLocked={true} />*/}
+            <ConstructorElement
+              text={`${bun.name} (низ)`}
+              thumbnail={bun.image_mobile}
+              price={bun.price}
+              type='bottom'
+              isLocked={true} />
           </div>
-          {/*<Total*/}
-          {/*  openOrderDetails={handleOpenOrder}*/}
-          {/*  total={sum} />*/}
-          {/*<Modal*/}
-          {/*  isOpen={isOpen}*/}
-          {/*  close={() => setIsOpen(false)}>*/}
-          {/*  {modalData && <OrderDetails orderNumber={modalData.order.number}/>}*/}
-          {/*</Modal>*/}
+          <Total
+            openOrderDetails={() => handleOpenOrder(ordersId)}
+            total={sum} />
+          <Modal
+            close={handleClose}
+            isOpen={open}>
+            {order && <OrderDetails orderNumber={111}/>}
+          </Modal>
         </div>
       )}
     </>
