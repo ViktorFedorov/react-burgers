@@ -12,28 +12,23 @@ import IngredientDetails from '../ingredient-details/ingredient-details'
 
 const BurgerConstructor = () => {
   
-  useEffect(() => (dispatch(getIngredientsThunk())),[])
-  // const [modalData, setModalData] = useState(null)
-  // const [idOfIngredient, setIdOfIngredient] = useState(null)
-  // const [isOpen, setIsOpen] = useState(false)
 
-  const dispatch = useDispatch()
   const {ingredients, loading, error} = useSelector(store => store.ingredients)
 
 
-  const sum = useMemo(() => {
-    return ingredients.reduce((acc, item) => {
-      return acc + item.price
-    }, 0)
-  }, [ingredients])
-
+  // const sum = useMemo(() => {
+  //   return ingredients.reduce((acc, item) => {
+  //     return acc + item.price
+  //   }, 0)
+  // }, [ingredients])
+  //
   const bun = useMemo(() => {
     return ingredients.filter(item => item.type === 'bun')[0]
-  }, [ingredients])
+  }, [ingredients, loading, error])
 
   const ingredientsWithoutBuns = useMemo(() => {
     return ingredients.filter(item => item.type !== 'bun')
-  }, [ingredients])
+  }, [ingredients, loading, error])
 
   // useEffect(() => {
   //   const res = ingredients.map(item => item._id)
@@ -47,12 +42,13 @@ const BurgerConstructor = () => {
   //     .catch(console.log)
   // }
 
+  console.log(ingredients)
+  console.log(bun)
   return (
-
     <>
       {loading && 'Загружаю...'}
       {error && 'Ошибка загрузки данных =('}
-      {!loading && !error && (
+      {!loading && !error && bun && ingredientsWithoutBuns && (
         <div className='pl-5 pt-20'>
           <div className={`mt-4 ${styles.item} ${styles.bun}`}>
             <ConstructorElement
@@ -80,12 +76,12 @@ const BurgerConstructor = () => {
             }
           </ul>
           <div className={`mt-4 ${styles.item} ${styles.bun}`}>
-            <ConstructorElement
-              text={`${bun.name} (низ)`}
-              thumbnail={bun.image_mobile}
-              price={bun.price}
-              type='bottom'
-              isLocked={true} />
+            {/*<ConstructorElement*/}
+            {/*  text={`${bun.name} (низ)`}*/}
+            {/*  thumbnail={bun.image_mobile}*/}
+            {/*  price={bun.price}*/}
+            {/*  type='bottom'*/}
+            {/*  isLocked={true} />*/}
           </div>
           {/*<Total*/}
           {/*  openOrderDetails={handleOpenOrder}*/}
@@ -98,8 +94,6 @@ const BurgerConstructor = () => {
         </div>
       )}
     </>
-
-
   )
 }
 
