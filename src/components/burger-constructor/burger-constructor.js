@@ -43,6 +43,8 @@ const BurgerConstructor = () => {
     dispatch(closeOrderDetails())
   }
 
+
+
   return (
     <>
       {loading && 'Загружаю...'}
@@ -88,7 +90,7 @@ const BurgerConstructor = () => {
           <Modal
             close={handleClose}
             isOpen={open}>
-            {order && <OrderDetails orderNumber={111}/>}
+            {order.length !== 0 && <OrderDetails or={order} orderNumber={order.order.number}/>}
           </Modal>
         </div>
       )}
