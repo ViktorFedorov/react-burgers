@@ -19,7 +19,11 @@ export const getIngredientsThunk = () => {
 
     getData()
       .then(({data}) => {
-        dispatch(getIngredientsSuccess(data))
+        if (data && data.length) {
+          dispatch(getIngredientsSuccess(data))
+        } else {
+          dispatch(getIngredientsFailed())
+        }
       })
   }
 }

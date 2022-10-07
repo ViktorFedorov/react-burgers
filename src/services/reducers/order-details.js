@@ -1,7 +1,8 @@
 import {
-  CLOSE_ORDER_DETAILS,
   SET_ORDER_DETAILS,
   SET_ORDER_DETAILS_SUCCESS,
+  SET_ORDER_DETAILS_FAILED,
+  CLOSE_ORDER_DETAILS,
   SET_ORDERS_ID
 } from '../constants'
 
@@ -19,6 +20,8 @@ export const orderDetailsReducer = (state = initialState, action) => {
       return {...state, loading: true, error: false}
     case SET_ORDER_DETAILS_SUCCESS:
       return {...state, loading: false, error: false, open: true, order: action.payload}
+    case SET_ORDER_DETAILS_FAILED:
+      return {...state, loading: false, error: true}
     case SET_ORDERS_ID:
       return {...state, loading: false, error: false, ordersId: action.id}
     case CLOSE_ORDER_DETAILS:
