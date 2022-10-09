@@ -12,7 +12,6 @@ export const constructorReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CONSTRUCTOR_INGREDIENT:
       if (action.ingredient.type === 'bun') {
-        if (state.bun) return state
         return {
           ...state,
           bun: action.ingredient
