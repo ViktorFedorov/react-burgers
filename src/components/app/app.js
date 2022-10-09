@@ -5,6 +5,8 @@ import BurgerConstructor from '../burger-constructor/burger-constructor'
 import Modal from '../modal/modal'
 import IngredientDetails from '../ingredient-details/ingredient-details'
 import {useDispatch, useSelector} from 'react-redux'
+import {DndProvider} from 'react-dnd'
+import {HTML5Backend} from 'react-dnd-html5-backend'
 import {
   closeIngredientDetails,
   getIngredientsThunk,
@@ -13,9 +15,8 @@ import {
 
 const App = () => {
   const dispatch = useDispatch()
-  const {ingredients, loading, error} = useSelector(store => store.ingredients)
-  const ingredient = useSelector(state => state.detail.ingredient)
-  const open = useSelector(state => state.detail.open)
+  const ingredient = useSelector(store => store.detail.ingredient)
+  const open = useSelector(store => store.detail.open)
 
   useEffect(() => (dispatch(getIngredientsThunk())),[])
 
@@ -25,26 +26,21 @@ const App = () => {
 
   return (
     <>
-      {loading && 'Загружаю...'}
-      {error && 'Ошибка загрузки данных =('}
-      {!loading && !error && (
-        <>
-          <AppHeader />
-          <main className='content columns'>
-              <BurgerIngredients
-                ingredients={ingredients}
-                onClick={handlerIngredientClick} />
-              <BurgerConstructor />
-            <Modal
-              isOpen={open}
-              close={handlerCloseDetails}
-              header='Детали ингредиента'>
-              <IngredientDetails
-                ingredient={ingredient} />
-            </Modal>
-          </main>
-        </>
-      )}
+      <AppHeader />
+      <DndProvider backend={HTML5Backend}>
+        <main className='content columns'>
+          <BurgerIngredients
+            onClick={handlerIngredientClick} />
+          <BurgerConstructor />
+          <Modal
+            isOpen={open}
+            close={handlerCloseDetails}
+            header='Детали ингредиента'>
+            <IngredientDetails
+              ingredient={ingredient} />
+          </Modal>
+        </main>
+      </DndProvider>
     </>
   )
 }

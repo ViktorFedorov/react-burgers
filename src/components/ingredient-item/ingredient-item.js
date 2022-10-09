@@ -2,12 +2,18 @@ import React from 'react'
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types'
 import styles from './ingredient-item.module.css'
+import {useDrag} from 'react-dnd'
 
 const IngredientItem = ({counter, onClick, ingredient}) => {
   const {image, name, price} = ingredient
+  const [, dragRef] = useDrag({
+    type: 'ingredient',
+    item: ingredient
+  })
 
   return (
     <li
+      ref={dragRef}
       onClick={() => onClick(ingredient)}
       className={styles.item}>
       <img src={image} alt={name} className={`ml-4 mr-4 ${styles.image}`}/>

@@ -8,7 +8,11 @@ const initialState = {
 export const ingredientDetailReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_INGREDIENT_DETAILS:
-      return {...state, open: true, ingredient: {...action.payload}}
+      return {
+        ...state,
+        open: true,
+        ingredient: {...action.payload}
+      }
     case CLOSE_INGREDIENT_DETAILS:
       return {
         ...state,
