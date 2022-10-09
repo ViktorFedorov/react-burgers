@@ -1,12 +1,20 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import IngredientItem from '../ingredient-item/ingredient-item'
 import {Counter} from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types'
 import ingredientPropTypes from'../../utils/types'
 import styles from './ingredient-list.module.css'
+import {useSelector} from 'react-redux'
 
 
 const IngredientList = ({title, ingredients, onClick}) => {
+  const {bun, toppings}  = useSelector(store => store.ingredientConstructor)
+
+  const setCounter = (item) => {
+    if (!toppings) return 0
+    return toppings.filter(topping => topping._id === item._id).length
+  }
+
   return (
     <>
       <h2 className='text text_type_main-medium mt-10'>{title}</h2>
@@ -14,13 +22,14 @@ const IngredientList = ({title, ingredients, onClick}) => {
         {
           ingredients.map(ingredient => {
             const {_id, name, price, image} = ingredient
+            const quantity = setCounter(ingredient)
             return (
               <IngredientItem
                 ingredient={ingredient}
                 onClick={onClick}
                 key={_id}
                 id={_id}
-                counter={<Counter count={0} />}
+                counter={<Counter count={quantity} />}
                 name={name}
                 price={price}
                 image={image} />
