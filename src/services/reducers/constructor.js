@@ -4,7 +4,7 @@ import {
 } from '../constants'
 
 const initialState = {
-  bun: null,
+  bun: '',
   toppings: []
 }
 

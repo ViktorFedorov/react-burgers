@@ -9,10 +9,11 @@ import {useSelector} from 'react-redux'
 
 const IngredientList = ({title, ingredients, onClick}) => {
   const {bun, toppings}  = useSelector(store => store.ingredientConstructor)
+  const ingredientsArr = [...toppings, bun]
 
   const setCounter = (item) => {
-    if (!toppings) return 0
-    return toppings.filter(topping => topping._id === item._id).length
+    if (!ingredientsArr) return 0
+    return ingredientsArr.filter(ingredient => ingredient._id === item._id).length
   }
 
   return (
@@ -22,7 +23,7 @@ const IngredientList = ({title, ingredients, onClick}) => {
         {
           ingredients.map(ingredient => {
             const {_id, name, price, image} = ingredient
-            const quantity = setCounter(ingredient)
+            const quantity =  ingredient.type === 'bun' ? setCounter(ingredient) * 2 : setCounter(ingredient)
             return (
               <IngredientItem
                 ingredient={ingredient}
