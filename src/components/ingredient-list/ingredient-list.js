@@ -29,7 +29,7 @@ const IngredientList = ({title, ingredients, onClick}) => {
                 onClick={onClick}
                 key={_id}
                 id={_id}
-                counter={<Counter count={quantity} />}
+                counter={quantity ? <Counter count={quantity} /> : null}
                 name={name}
                 price={price}
                 image={image} />
