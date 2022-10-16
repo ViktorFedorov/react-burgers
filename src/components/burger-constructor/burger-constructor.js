@@ -1,17 +1,22 @@
-import React, {useEffect, useMemo, useState} from 'react'
+import React from 'react'
 import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components'
 import Total from '../total/total'
 import OrderDetails from '../order-details/order-details'
 import Modal from '../modal/modal'
 import styles from './burger-constructor.module.css'
 import {useDispatch, useSelector} from 'react-redux'
-import {closeOrderDetails, sendOrderDataThunk, setOrdersId} from '../../services/actions/order-details'
+import {closeOrderDetails, sendOrderDataThunk} from '../../services/actions/order-details'
 import {useDrop} from 'react-dnd'
-import {deleteConstructorIngredient, setConstructorIngredient} from '../../services/actions/constructor'
+import {
+  deleteConstructorIngredient,
+  moveConstructorIngredient,
+  setConstructorIngredient
+} from '../../services/actions/constructor'
+import SelectedIngredient from '../selected-ingredient/selected-ingredient'
 
 const BurgerConstructor = () => {
   const {bun, toppings} = useSelector(store => store.ingredientConstructor)
-  const {order, open, ordersId} = useSelector(store => store.order)
+  const {order, open} = useSelector(store => store.order)
   const dispatch = useDispatch()
 
   const [{isHover}, dropRef] = useDrop({
@@ -30,27 +35,14 @@ const BurgerConstructor = () => {
     dispatch(setConstructorIngredient(modifyElement))
   }
 
-  // const sum = useMemo(() => {
-  //   return ingredients.reduce((acc, item) => {
-  //     return acc + item.price
-  //   }, 0)
-  // }, [ingredients])
-  //
-  // const bun = useMemo(() => {
-  //   return ingredients.filter(item => item.type === 'bun')[0]
-  // }, [ingredients, loading, error])
-  //
-  // const ingredientsWithoutBuns = useMemo(() => {
-  //   return ingredients.filter(item => item.type !== 'bun')
-  // }, [ingredients, loading, error])
-  //
-  // useEffect(() => {
-  //   const res = ingredients.map(item => item._id)
-  //   dispatch(setOrdersId(res))
-  // }, [])
+  const sum = () => {
+    if(!bun || !toppings.length) return
+    return  toppings.reduce((acc, topping) => topping.price + acc, 0) + bun.price * 2
+  }
 
-  const handleOpenOrder = (ordersIds) => {
-    dispatch(sendOrderDataThunk(ordersIds))
+  const handleOpenOrder = () => {
+    const ids = toppings.map(topping => topping._id)
+    dispatch(sendOrderDataThunk([...ids, bun._id]))
   }
 
   const handleClose = () => {
@@ -61,6 +53,10 @@ const BurgerConstructor = () => {
     dispatch(deleteConstructorIngredient(id))
   }
 
+  const moveIngredient = (hoverIndex, dragIndex) => {
+    dispatch(moveConstructorIngredient(hoverIndex, dragIndex))
+  }
+
   const backgroundColor = isHover ? 'rgba(0,0,0, .4)' : 'transparent'
 
   return (
@@ -68,10 +64,6 @@ const BurgerConstructor = () => {
       ref={dropRef}
       style={{backgroundColor}}
       className={`pl-5 mt-20`}>
-
-      {/*{!toppings.length && !bun && 'перетащите выбранные ингредиенты'}*/}
-
-
       {
         bun &&
         <div className={`mt-4 ${styles.item} ${styles.bun}`}>
@@ -88,11 +80,13 @@ const BurgerConstructor = () => {
           toppings.map((topping, index) => (
             <li key={index} className={`mt-4 ${styles.item}`}>
               <div className={styles.dragndrop_icon}></div>
-              <ConstructorElement
-                handleClose={() => handleDeleteIngredient(topping.uid)}
+              <SelectedIngredient
+                index={index}
                 text={topping.name}
                 thumbnail={topping.image_mobile}
-                price={topping.price} />
+                price={topping.price}
+                handleClose={() => handleDeleteIngredient(topping.uid)}
+                moveIngredient={moveIngredient}/>
             </li>
           ))
         }
@@ -108,55 +102,19 @@ const BurgerConstructor = () => {
             isLocked={true} />
         </div>
       }
+      {
+        bun && toppings &&
+        <Total
+          openOrderDetails={handleOpenOrder}
+          total={sum()} />
+      }
+      <Modal
+        close={handleClose}
+        isOpen={open}>
+        {order.length !== 0 && <OrderDetails or={order} orderNumber={order.order.number}/>}
+      </Modal>
     </div>
   )
 }
 
 export default BurgerConstructor
-
-
-// <div className='pl-5 pt-20'>
-//   <div className={`mt-4 ${styles.item} ${styles.bun}`}>
-//   <ConstructorElement
-//   text={`${bun.name} (верх)`}
-//   thumbnail={bun.image_mobile}
-//   price={bun.price}
-//   type='top'
-//   isLocked={true} />
-//   </div>
-// //   <ul className={`pr-4 ${styles.scroll} ${styles.list}`}>
-//     {
-//       ingredientsWithoutBuns.map(ingredient => {
-//         const {_id, name, image_mobile, price} = ingredient
-//
-//         return (
-//           <li key={_id} className={`mt-4 ${styles.item}`}>
-//             <div className={styles.dragndrop_icon}></div>
-//             <ConstructorElement
-//               text={name}
-//               thumbnail={image_mobile}
-//               price={price} />
-//           </li>
-//         )
-//       })
-//     }
-//   </ul>
-//   <div className={`mt-4 ${styles.item} ${styles.bun}`}>
-//     <ConstructorElement
-//       text={`${bun.name} (низ)`}
-//       thumbnail={bun.image_mobile}
-//       price={bun.price}
-//       type='bottom'
-//       isLocked={true} />
-// </div>
-// <Total
-//   openOrderDetails={() => handleOpenOrder(ordersId)}
-//   total={sum} />
-// <Modal
-//   close={handleClose}
-//   isOpen={open}>
-//   {order.length !== 0 && <OrderDetails or={order} orderNumber={order.order.number}/>}
-// </Modal>
-// </div>
-
-

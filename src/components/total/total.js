@@ -18,7 +18,7 @@ const Total = ({total, openOrderDetails}) => {
 }
 
 Total.propTypes = {
-  total: PropTypes.number.isRequired,
+  total: PropTypes.number,
   openOrderDetails: PropTypes.func.isRequired
 }
 

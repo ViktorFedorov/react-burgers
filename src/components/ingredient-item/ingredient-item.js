@@ -30,7 +30,7 @@ const IngredientItem = ({counter, onClick, ingredient}) => {
 }
 
 IngredientItem.propTypes = {
-  counter: PropTypes.element.isRequired,
+  counter: PropTypes.element,
   onClick: PropTypes.func.isRequired,
   ingredient: PropTypes.object.isRequired
 }
