@@ -36,8 +36,7 @@ const BurgerConstructor = () => {
   }
 
   const sum = () => {
-    if(!bun || !toppings.length) return
-    return  toppings.reduce((acc, topping) => topping.price + acc, 0) + bun.price * 2
+    return toppings.reduce((acc, topping) => topping.price + acc, 0) + bun.price * 2
   }
 
   const handleOpenOrder = () => {
@@ -78,7 +77,7 @@ const BurgerConstructor = () => {
       <ul className={`pr-4 ${styles.scroll} ${styles.list}`}>
         {
           toppings.map((topping, index) => (
-            <li key={index} className={`mt-4 ${styles.item}`}>
+            <li key={topping.uid} className={`mt-4 ${styles.item}`}>
               <div className={styles.dragndrop_icon}></div>
               <SelectedIngredient
                 index={index}
@@ -103,7 +102,7 @@ const BurgerConstructor = () => {
         </div>
       }
       {
-        bun && toppings &&
+        bun &&
         <Total
           openOrderDetails={handleOpenOrder}
           total={sum()} />

@@ -26,5 +26,6 @@ export const sendOrderDataThunk = (ids) => {
           dispatch(sendQueryFailed())
         }
       })
+      .catch(console.log)
   }
 }

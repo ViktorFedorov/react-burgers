@@ -11,7 +11,7 @@ const ModalOverlay = ({close}) => {
 }
 
 ModalOverlay.propTypes = {
-  // close: PropTypes.func.isRequired
+  close: PropTypes.func.isRequired
 }
 
 export default ModalOverlay

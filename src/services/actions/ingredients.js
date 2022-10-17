@@ -25,5 +25,6 @@ export const getIngredientsThunk = () => {
           dispatch(getIngredientsFailed())
         }
       })
+      .catch(console.log)
   }
 }
