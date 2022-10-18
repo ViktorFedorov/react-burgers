@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import IngredientList from '../ingredient-list/ingredient-list'
 import PropTypes from 'prop-types'
 import styles from './burger-ingredients.module.css'
@@ -21,8 +21,27 @@ const BurgerIngredients = ({onClick}) => {
   const bunsSection = useRef(null)
   const sauceSection = useRef(null)
   const mainSection = useRef(null)
+  const blockRef = useRef(null)
 
+  useEffect(() => {
+    const menu = document.getElementById('menu')
+    const scrollBlock = () => {
 
+      let coordsBun = ( null !== bunsSection.current ) && bunsSection.current.getBoundingClientRect().top
+      let coordsSauces = ( null !== sauceSection.current ) && sauceSection.current.getBoundingClientRect().top
+      let coordsMain = ( null !== mainSection.current ) && mainSection.current.getBoundingClientRect().top
+
+      if ( 250 < coordsBun && coordsBun < 350 ) setCurrent('Булки')
+      else if ( 250 < coordsSauces && coordsSauces < 350 ) setCurrent('Соусы')
+      else if ( 250 < coordsMain && coordsMain < 350 ) setCurrent('Начинки')
+    }
+
+    menu && menu.addEventListener('scroll', scrollBlock);
+
+    return () => {
+      menu && menu.removeEventListener('scroll', scrollBlock);
+    }
+  })
 
   return (
     <>
@@ -63,6 +82,8 @@ const BurgerIngredients = ({onClick}) => {
             </li>
           </ul>
           <div
+            id='menu'
+            ref={blockRef}
             className={styles.scroll}>
             <div ref={bunsSection}>
               <IngredientList title='Булки' ingredients={buns} onClick={onClick} />
