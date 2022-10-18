@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import IngredientItem from '../ingredient-item/ingredient-item'
 import {Counter} from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types'

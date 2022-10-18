@@ -3,6 +3,7 @@ import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types'
 import styles from './ingredient-item.module.css'
 import {useDrag} from 'react-dnd'
+import ingredientPropTypes from'../../utils/types'
 
 const IngredientItem = ({counter, onClick, ingredient}) => {
   const {image, name, price} = ingredient
@@ -32,19 +33,7 @@ const IngredientItem = ({counter, onClick, ingredient}) => {
 IngredientItem.propTypes = {
   counter: PropTypes.element,
   onClick: PropTypes.func.isRequired,
-  ingredient: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    proteins: PropTypes.number,
-    fat: PropTypes.number,
-    carbohydrates: PropTypes.number,
-    price: PropTypes.number.isRequired,
-    image: PropTypes.string,
-    image_mobile: PropTypes.string.isRequired,
-    image_large: PropTypes.string,
-    __v: PropTypes.number
-  })
+  ingredient: ingredientPropTypes
 }
 
 export default IngredientItem
