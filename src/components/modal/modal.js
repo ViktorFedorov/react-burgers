@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import styles from './modal.module.css'
 
 const Modal = ({children, header, isOpen, close}) => {
+
   useEffect(() => {
     if (!isOpen) return
 
@@ -39,7 +40,6 @@ const Modal = ({children, header, isOpen, close}) => {
 }
 
 Modal.propTypes = {
-  children: PropTypes.element,
   header: PropTypes.string,
   isOpen: PropTypes.bool.isRequired,
   close: PropTypes.func.isRequired
