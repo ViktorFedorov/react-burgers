@@ -1,13 +1,14 @@
 import React from 'react'
 import styles from './header-link.module.css'
 import PropTypes from 'prop-types'
+import {Link} from 'react-router-dom'
 
-const HeaderLink = ({icon, children, textClass}) => {
+const HeaderLink = ({icon, children, textClass, path}) => {
   return (
-    <a href='/' className={styles.link}>
+    <Link to={path} className={styles.link}>
       {icon}
       <div className={`ml-2 ${textClass}`}>{children}</div>
-    </a>
+    </Link>
   )
 }
 
