@@ -12,21 +12,29 @@ const AppHeader = () => {
       <nav className={`content ${styles.navigation}`}>
         <ul className={styles.list}>
           <li className='mr-7 ml-5'>
-            <HeaderLink active={true} icon={<BurgerIcon type='primary'/>} textClass={textDefault}>
+            <HeaderLink
+              icon={<BurgerIcon type='primary'/>}
+              textClass={textDefault}
+              path='/'>
               Конструктор
             </HeaderLink>
           </li>
           <li>
-            <HeaderLink icon={<ListIcon type='secondary' />} textClass={textDefault}>
+            <HeaderLink
+              icon={<ListIcon type='secondary' />}
+              textClass={textDefault}
+              path='/orders'>
               Лента заказов
             </HeaderLink>
           </li>
         </ul>
-        <Link to='/' className={styles.logo}>
+        <Link
+          to='/'
+          className={styles.logo}>
           <Logo />
         </Link>
         <div className={styles.cabinet}>
-          <HeaderLink icon={<ProfileIcon type='secondary' />} textClass={textDefault} path={'/login'}>
+          <HeaderLink icon={<ProfileIcon type='secondary' />} textClass={textDefault} path='/register'>
             Личный кабинет
           </HeaderLink>
         </div>
