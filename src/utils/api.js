@@ -23,7 +23,20 @@ const sendData = (idsArray) => {
     .then(checkResponse)
 }
 
+// отправка email пользователя на сервер для проверки его существования
+const changePassword = (email) => {
+  return fetch(`${options.baseApiUrl}/password-reset`, {
+    method: 'POST',
+    headers: options.headers,
+    body: JSON.stringify({
+      email
+    })
+  })
+    .then(checkResponse)
+}
+
 export {
   getData,
-  sendData
+  sendData,
+  changePassword
 }
