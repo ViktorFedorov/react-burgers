@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 const ResetPasswordPage = () => {
   const [formValue, setFormValue] = useState({
     password: '',
-    code: ''
+    token: ''
   })
 
   const inputHandler = (e) => {
@@ -30,8 +30,8 @@ const ResetPasswordPage = () => {
         <div className='mb-6 input'>
           <Input
             onChange={inputHandler}
-            value={formValue.code}
-            name={'code'}
+            value={formValue.token}
+            name={'token'}
             type={'text'}
             placeholder={'Введите код из письма'} />
         </div>
