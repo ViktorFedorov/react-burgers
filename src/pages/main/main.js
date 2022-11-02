@@ -11,7 +11,7 @@ const MainPage = () => {
   const ingredient = useSelector(store => store.detail.ingredient)
   const open = useSelector(store => store.detail.open)
 
-  useEffect(() => (dispatch(getIngredientsThunk())),[])
+  useEffect(() => (dispatch(getIngredientsThunk())),[dispatch])
 
   const handlerIngredientClick = (ingredient) => dispatch(setIngredientDetails(ingredient))
   const handlerCloseDetails = () => dispatch(closeIngredientDetails())

@@ -25,6 +25,7 @@ const ForgotPasswordPage = () => {
         <div className='mt-6 mb-6 input'>
           <Input
             onChange={inputHandler}
+            value={email}
             type={'email'}
             placeholder={'Укажите e-mail'} />
         </div>
