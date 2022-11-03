@@ -1,19 +1,21 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components'
 import {Link} from 'react-router-dom'
+import {createUser} from '../../utils/api'
+import {useDispatch, useSelector} from 'react-redux'
+import {setRegisterFormValue} from '../../services/actions/register-form'
 
 const RegisterPage = () => {
-  const [formValue, setFormValue] = useState({
-    name: '',
-    email: '',
-    password: ''
-  })
+  const dispatch = useDispatch()
+  const {name, email, password} = useSelector(store => store.register)
 
   const inputHandler = (e) => {
-    setFormValue(prevState => ({
-      ...prevState,
-      [e.target.name]: e.target.value
-    }))
+    dispatch(setRegisterFormValue(e.target.name, e.target.value))
+  }
+
+  const handleButtonClick = () => {
+    createUser(email, password, name)
+      // .catch(console.log)
   }
 
   return (
@@ -23,7 +25,7 @@ const RegisterPage = () => {
         <div className={`mt-6 input`}>
           <Input
             onChange={inputHandler}
-            value={formValue.name}
+            value={name}
             name={'name'}
             type={'text'}
             placeholder={'Имя'} />
@@ -31,7 +33,7 @@ const RegisterPage = () => {
         <div className={`mt-6 input`}>
           <Input
             onChange={inputHandler}
-            value={formValue.email}
+            value={email}
             name={'email'}
             type={'email'}
             placeholder={'E-mail'} />
@@ -39,13 +41,13 @@ const RegisterPage = () => {
         <div className={`mt-6 mb-6 input`}>
           <Input
             onChange={inputHandler}
-            value={formValue.password}
+            value={password}
             name={'password'}
             type={'password'}
             placeholder={'Пароль'} />
         </div>
       </form>
-      <Button>Зарегистрироваться</Button>
+      <Button onClick={handleButtonClick}>Зарегистрироваться</Button>
       <p className={`text mt-20 text_type_main-default text_color_inactive isRegistered`}>Уже зарегистрированы?
         <Link to='/login'>Войти</Link>
       </p>

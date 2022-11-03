@@ -3,10 +3,12 @@ import {ingredientsReducer} from './ingredients-reducers'
 import {ingredientDetailReducer} from './ingredient-details'
 import {orderDetailsReducer} from './order-details'
 import {constructorReducer} from './constructor'
+import {registerFormReducer} from './register-form'
 
 export const rootReducer = combineReducers({
   ingredients: ingredientsReducer,
   ingredientConstructor: constructorReducer,
   detail: ingredientDetailReducer,
-  order: orderDetailsReducer
+  order: orderDetailsReducer,
+  register: registerFormReducer
 })
