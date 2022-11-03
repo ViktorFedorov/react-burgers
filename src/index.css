@@ -44,3 +44,7 @@ a.active {
   color: #4c4cff;
   margin-left: 8px;
 }
+
+.send_button {
+  margin: 0 auto;
+}

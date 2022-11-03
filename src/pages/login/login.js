@@ -35,8 +35,10 @@ const LoginPage = () => {
             type={'password'}
             placeholder={'Пароль'} />
         </div>
+        <div className='send_button'>
+          <Button>Войти</Button>
+        </div>
       </form>
-      <Button>Войти</Button>
       <p
         className={`text mt-20 text_type_main-default text_color_inactive isRegistered`}>
         Вы — новый пользователь?

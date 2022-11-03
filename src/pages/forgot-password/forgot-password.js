@@ -29,8 +29,10 @@ const ForgotPasswordPage = () => {
             type={'email'}
             placeholder={'Укажите e-mail'} />
         </div>
+        <div className='send_button'>
+          <Button onClick={buttonHandler}>Восстановить</Button>
+        </div>
       </form>
-      <Button onClick={buttonHandler}>Восстановить</Button>
       <p
         className={`text mt-20 text_type_main-default text_color_inactive isRegistered`}>
         Вспомнили пароль?

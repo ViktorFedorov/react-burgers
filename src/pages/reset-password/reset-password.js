@@ -35,8 +35,10 @@ const ResetPasswordPage = () => {
             type={'text'}
             placeholder={'Введите код из письма'} />
         </div>
+        <div className='send_button'>
+          <Button>Сохранить</Button>
+        </div>
       </form>
-      <Button>Сохранить</Button>
       <p
         className={`text mt-20 text_type_main-default text_color_inactive isRegistered`}>
         Вспомнили пароль?
