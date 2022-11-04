@@ -25,6 +25,7 @@ const ResetPasswordPage = () => {
             value={formValue.password}
             name={'password'}
             type={'password'}
+            icon='ShowIcon'
             placeholder={'Введите новый пароль'} />
         </div>
         <div className='mb-6 input'>

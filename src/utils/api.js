@@ -23,7 +23,6 @@ const sendData = (idsArray) => {
     .then(checkResponse)
 }
 
-// отправка email пользователя на сервер для проверки его существования
 const changePassword = (email) => {
   return fetch(`${options.baseApiUrl}/password-reset`, {
     method: 'POST',
@@ -35,7 +34,7 @@ const changePassword = (email) => {
     .then(checkResponse)
 }
 
-// создание пользователя
+
 const createUser = (email, password, name) => {
   return fetch(`${options.baseApiUrl}/auth/register`, {
     method: 'POST',

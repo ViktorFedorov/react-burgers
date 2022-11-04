@@ -1,17 +1,12 @@
 import {
   SET_REGISTER_FORM_VALUE,
-  SEND_REGISTER_DATA
+  RESET_REGISTER_FORM
 } from '../constants'
 
 const initialState = {
   name: '',
   email: '',
-  password: '',
-  user: null,
-  accessToken: null,
-  refreshToken: null,
-  sendQuery: false,
-  hasError: false,
+  password: ''
 }
 
 export const registerFormReducer = (state = initialState, action) => {
@@ -21,10 +16,11 @@ export const registerFormReducer = (state = initialState, action) => {
         ...state,
         [action.field]: action.value
       }
-    case SEND_REGISTER_DATA:
+    case RESET_REGISTER_FORM:
       return {
-        ...state,
-        sendQuery: true
+        name: '',
+        email: '',
+        password: ''
       }
     default:
       return state

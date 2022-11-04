@@ -2,7 +2,8 @@ import React from 'react'
 import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components'
 import {Link} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
-import {registerUserThunk, setRegisterFormValue} from '../../services/actions/register-form'
+import {setRegisterFormValue} from '../../services/actions/register-form'
+import {registerUserThunk} from '../../services/actions/user'
 
 const RegisterPage = () => {
   const dispatch = useDispatch()
@@ -12,11 +13,9 @@ const RegisterPage = () => {
     dispatch(setRegisterFormValue(e.target.name, e.target.value))
   }
 
-  // тут нужно отправлять асинхронный экшен типа dispatch(middlewareThunk)
-  // так же необходимы экшены на отчистку полей формы
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(registerUserThunk(name, email, password))
+    dispatch(registerUserThunk(email, password, name))
   }
 
   return (
@@ -47,6 +46,7 @@ const RegisterPage = () => {
             value={password}
             name={'password'}
             type={'password'}
+            icon='ShowIcon'
             placeholder={'Пароль'} />
         </div>
         <div className='send_button'>

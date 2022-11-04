@@ -1,20 +1,9 @@
-import {createUser} from '../../utils/api'
 import {
   SET_REGISTER_FORM_VALUE,
-  SEND_REGISTER_DATA
+  RESET_REGISTER_FORM
 } from '../constants'
 
 export const setRegisterFormValue = (field, value) => ({type: SET_REGISTER_FORM_VALUE, field, value})
+export const resetForm = () => ({type: RESET_REGISTER_FORM})
 
-// тут будет санка для отправки формы
-// 3 состояния - запрос начат, запрос успешен, провал
-export const registerUserThunk = (email, password, name) => {
-  return (dispatch) => {
-    dispatch({type: SEND_REGISTER_DATA})
 
-    createUser(email, password, name)
-      .then(console.log)
-
-    // очистить стэйт полей формы
-  }
-}

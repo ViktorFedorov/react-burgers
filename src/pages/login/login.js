@@ -33,6 +33,7 @@ const LoginPage = () => {
             value={formValue.password}
             name={'password'}
             type={'password'}
+            icon='ShowIcon'
             placeholder={'Пароль'} />
         </div>
         <div className='send_button'>

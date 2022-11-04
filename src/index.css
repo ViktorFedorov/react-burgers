@@ -17,7 +17,7 @@ p, h1, h2, h3 {
 
 /*NavLink*/
 a.active {
-  color: white;
+  color: #f2f2f3;
 }
 
 .wrapper {
@@ -31,7 +31,6 @@ a.active {
 .form {
   display: flex;
   width: 480px;
-  align-items: stretch;
   flex-direction: column;
 }
 
@@ -47,4 +46,8 @@ a.active {
 
 .send_button {
   margin: 0 auto;
+}
+
+.input__icon {
+  padding-left: 375px;
 }
