@@ -8,6 +8,7 @@ import ForgotPasswordPage from '../../pages/forgot-password/forgot-password'
 import MainPage from '../../pages/main/main'
 import ResetPasswordPage from '../../pages/reset-password/reset-password'
 import ProfilePage from '../../pages/profile/profile'
+import NotFound404 from '../../pages/not-found404/not-found404'
 import {DndProvider} from 'react-dnd'
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
           <Route path='/forgot-password' element={<ForgotPasswordPage />} />
           <Route path='/reset-password' element={<ResetPasswordPage />} />
           <Route path='/profile' element={<ProfilePage />} />
+          <Route path='*' element={<NotFound404 />} />
         </Routes>
       </DndProvider>
     </Router>
