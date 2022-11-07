@@ -1,13 +1,15 @@
 import React from 'react'
 import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {setRegisterFormValue} from '../../services/actions/register-form'
-import {registerUserThunk} from '../../services/actions/user'
+import {createUser} from '../../utils/api'
+import {RESET_REGISTER_FORM} from '../../services/constants'
 
 const RegisterPage = () => {
   const dispatch = useDispatch()
   const {name, email, password} = useSelector(store => store.register)
+  const navigate = useNavigate()
 
   const inputHandler = (e) => {
     dispatch(setRegisterFormValue(e.target.name, e.target.value))
@@ -15,7 +17,19 @@ const RegisterPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(registerUserThunk(email, password, name))
+
+    createUser(email, password, name)
+      .then(data => {
+        if (data.success) {
+          navigate('/login')
+        }
+      })
+      .finally(() => dispatch({type: RESET_REGISTER_FORM}))
+
+
+
+
+    // dispatch(registerUserThunk(email, password, name))
   }
 
   return (

@@ -1,17 +1,12 @@
-import {createUser} from '../../utils/api'
-import {ADD_NEW_USER, RESET_REGISTER_FORM} from '../constants'
+import {authUser} from '../../utils/api'
+import {LOGIN_USER} from '../constants'
 
-export const registerUserThunk = (email, password, name) => {
+export const loginUserThunk = (email, password) => {
   return (dispatch) => {
-    createUser(email, password, name)
+    authUser(email, password)
       .then(userData => {
-        dispatch({type: ADD_NEW_USER, userData})
+        dispatch({type: LOGIN_USER, userData})
       })
-      .finally(dispatch({type: RESET_REGISTER_FORM}))
-
-
-
-
-
   }
 }
+

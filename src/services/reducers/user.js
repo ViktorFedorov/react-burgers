@@ -1,4 +1,4 @@
-import {ADD_NEW_USER} from '../constants'
+import {LOGIN_USER} from '../constants'
 
 const initialState = {
   user: {
@@ -11,7 +11,7 @@ const initialState = {
 
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_NEW_USER:
+    case LOGIN_USER:
       const {user, accessToken, refreshToken} = action.userData
       return {
         user: {

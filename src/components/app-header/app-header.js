@@ -3,9 +3,12 @@ import {Logo, BurgerIcon, ListIcon, ProfileIcon} from '@ya.praktikum/react-devel
 import HeaderLink from '../header-link/header-link'
 import styles from './app-header.module.css'
 import {Link} from 'react-router-dom'
+import {useSelector} from 'react-redux'
 
 const AppHeader = () => {
   const textDefault = 'text text_type_main-default'
+  const user = useSelector(store => store.user)
+  console.log(user)
 
   return (
     <header className={styles.header}>
@@ -35,7 +38,7 @@ const AppHeader = () => {
         </Link>
         <div className={styles.cabinet}>
           <HeaderLink icon={<ProfileIcon type='secondary' />} textClass={textDefault} path='/register'>
-            Личный кабинет
+            {user ? user.name : 'Личный кабинет'}
           </HeaderLink>
         </div>
       </nav>
