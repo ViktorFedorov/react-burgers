@@ -5,7 +5,9 @@ export const loginUserThunk = (email, password) => {
   return (dispatch) => {
     authUser(email, password)
       .then(userData => {
-        dispatch({type: LOGIN_USER, userData})
+        if (userData.success) {
+          dispatch({type: LOGIN_USER, userData})
+        }
       })
   }
 }

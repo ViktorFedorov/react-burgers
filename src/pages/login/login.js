@@ -1,13 +1,11 @@
 import React, {useState} from 'react'
 import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components'
-import {Link, useNavigate} from 'react-router-dom'
-import {authUser} from '../../utils/api'
+import {Link} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import {loginUserThunk} from '../../services/actions/user'
 
 const LoginPage = () => {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const [form, setValue] = useState({
     email: '',
     password: ''
@@ -28,19 +26,8 @@ const LoginPage = () => {
     e.preventDefault()
     setError(false)
 
-    authUser(form.email, form.password)
-      .then(data => {
-
-        console.log(data)
-
-        if (data.success) {
-          // диспатчим экшн добавления юзера в стор и редиректимся на страртовую стр
-          dispatch(loginUserThunk())
-          navigate('/')
-        }
-
-      })
-      .catch(() => setError(true))
+    const {email, password} = form
+    dispatch(loginUserThunk(email, password))
   }
 
   return (

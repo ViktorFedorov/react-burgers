@@ -7,8 +7,7 @@ import {useSelector} from 'react-redux'
 
 const AppHeader = () => {
   const textDefault = 'text text_type_main-default'
-  const user = useSelector(store => store.user)
-  console.log(user)
+  const {user} = useSelector(store => store.user)
 
   return (
     <header className={styles.header}>
@@ -38,7 +37,7 @@ const AppHeader = () => {
         </Link>
         <div className={styles.cabinet}>
           <HeaderLink icon={<ProfileIcon type='secondary' />} textClass={textDefault} path='/register'>
-            {user ? user.name : 'Личный кабинет'}
+            {user && user.name ? user.name : 'Личный кабинет'}
           </HeaderLink>
         </div>
       </nav>

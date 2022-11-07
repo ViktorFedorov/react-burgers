@@ -25,11 +25,6 @@ const RegisterPage = () => {
         }
       })
       .finally(() => dispatch({type: RESET_REGISTER_FORM}))
-
-
-
-
-    // dispatch(registerUserThunk(email, password, name))
   }
 
   return (
