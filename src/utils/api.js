@@ -34,7 +34,7 @@ const changePassword = (email) => {
     .then(checkResponse)
 }
 
-
+// регистрация
 const createUser = (email, password, name) => {
   return fetch(`${options.baseApiUrl}/auth/register`, {
     method: 'POST',
@@ -48,9 +48,23 @@ const createUser = (email, password, name) => {
     .then(checkResponse)
 }
 
+// авторизация
+const authUser = (email, password) => {
+  return fetch(`${options.baseApiUrl}/auth/login`, {
+    method: 'POST',
+    headers: options.headers,
+    body: JSON.stringify({
+      email,
+      password
+    })
+  })
+    .then(checkResponse)
+}
+
 export {
   getData,
   sendData,
   changePassword,
-  createUser
+  createUser,
+  authUser
 }

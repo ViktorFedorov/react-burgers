@@ -1,18 +1,44 @@
 import React, {useState} from 'react'
 import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
+import {authUser} from '../../utils/api'
 
 const LoginPage = () => {
-  const [formValue, setFormValue] = useState({
+  const navigate = useNavigate()
+
+  const [form, setValue] = useState({
     email: '',
     password: ''
   })
 
+  const [error, setError] = useState(false)
+
   const inputHandler = (e) => {
-    setFormValue(prevState => ({
+    setError(false)
+
+    setValue(prevState => ({
       ...prevState,
       [e.target.name]: e.target.value
     }))
+  }
+
+  const login = (e) => {
+    e.preventDefault()
+    setError(false)
+
+    authUser(form.email, form.password)
+      .then(data => {
+
+        console.log(data)
+
+        if (data.success) {
+
+          // диспатчим экшн добавления юзера в стор и редиректимся на страртовую стр
+          // navigate('/')
+        }
+
+      })
+      .catch(() => setError(true))
   }
 
   return (
@@ -21,8 +47,10 @@ const LoginPage = () => {
       <form className='form mt-6'>
         <div className='input'>
           <Input
+            error={error}
+            errorText={'некорректные данные'}
             onChange={inputHandler}
-            value={formValue.email}
+            value={form.email}
             name={'email'}
             type={'email'}
             placeholder={'E-mail'} />
@@ -30,14 +58,14 @@ const LoginPage = () => {
         <div className={`mt-6 mb-6 input`}>
           <Input
             onChange={inputHandler}
-            value={formValue.password}
+            value={form.password}
             name={'password'}
             type={'password'}
             icon='ShowIcon'
             placeholder={'Пароль'} />
         </div>
         <div className='send_button'>
-          <Button>Войти</Button>
+          <Button onClick={login}>Войти</Button>
         </div>
       </form>
       <p

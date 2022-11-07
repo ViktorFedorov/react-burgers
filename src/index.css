@@ -48,6 +48,8 @@ a.active {
   margin: 0 auto;
 }
 
-.input__icon {
-  padding-left: 375px;
+div.input__icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
 }
