@@ -3,7 +3,7 @@ import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components'
 import {Link, useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {setRegisterFormValue} from '../../services/actions/register-form'
-import {createUser} from '../../utils/api'
+import {registerUser} from '../../utils/api'
 import {RESET_REGISTER_FORM} from '../../services/constants'
 
 const RegisterPage = () => {
@@ -18,7 +18,7 @@ const RegisterPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    createUser(email, password, name)
+    registerUser(email, password, name)
       .then(data => {
         if (data.success) {
           navigate('/login')

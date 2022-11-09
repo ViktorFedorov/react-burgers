@@ -35,7 +35,7 @@ const changePassword = (email) => {
 }
 
 // регистрация
-const createUser = (email, password, name) => {
+const registerUser = (email, password, name) => {
   return fetch(`${options.baseApiUrl}/auth/register`, {
     method: 'POST',
     headers: options.headers,
@@ -65,6 +65,6 @@ export {
   getData,
   sendData,
   changePassword,
-  createUser,
+  registerUser,
   authUser
 }
