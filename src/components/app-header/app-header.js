@@ -36,8 +36,8 @@ const AppHeader = () => {
           <Logo />
         </Link>
         <div className={styles.cabinet}>
-          <HeaderLink icon={<ProfileIcon type='secondary' />} textClass={textDefault} path='/register'>
-            {user && user.name ? user.name : 'Личный кабинет'}
+          <HeaderLink icon={<ProfileIcon type='secondary' />} textClass={textDefault} path={user && user.name ? '/profile' : '/register'}>
+            {user.name ? user.name : 'Личный кабинет'}
           </HeaderLink>
         </div>
       </nav>

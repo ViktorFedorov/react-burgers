@@ -110,7 +110,7 @@ const BurgerConstructor = () => {
       <Modal
         close={handleClose}
         isOpen={open}>
-        {order.length !== 0 && <OrderDetails or={order} orderNumber={order.order.number}/>}
+        {order.length !== 0 && <OrderDetails orderNumber={order.order.number}/>}
       </Modal>
     </div>
   )

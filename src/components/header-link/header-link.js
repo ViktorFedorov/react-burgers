@@ -2,8 +2,11 @@ import React from 'react'
 import styles from './header-link.module.css'
 import PropTypes from 'prop-types'
 import {NavLink} from 'react-router-dom'
+import {useSelector} from 'react-redux'
 
 const HeaderLink = ({icon, children, textClass, path}) => {
+  const {user} = useSelector(store => store.user)
+
   return (
     <NavLink
       to={path}

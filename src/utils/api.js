@@ -23,12 +23,26 @@ const sendData = (idsArray) => {
     .then(checkResponse)
 }
 
-const changePassword = (email) => {
+// запрос на смену пароля
+const resetPassword = (email) => {
   return fetch(`${options.baseApiUrl}/password-reset`, {
     method: 'POST',
     headers: options.headers,
     body: JSON.stringify({
       email
+    })
+  })
+    .then(checkResponse)
+}
+
+//смена пароля
+const updatePassword = (password, token) => {
+  return fetch(`${options.baseApiUrl}/password-reset/reset`, {
+    method: 'POST',
+    headers: options.headers,
+    body: JSON.stringify({
+      password,
+      token
     })
   })
     .then(checkResponse)
@@ -49,7 +63,7 @@ const registerUser = (email, password, name) => {
 }
 
 // авторизация
-const authUser = (email, password) => {
+const login = (email, password) => {
   return fetch(`${options.baseApiUrl}/auth/login`, {
     method: 'POST',
     headers: options.headers,
@@ -61,10 +75,24 @@ const authUser = (email, password) => {
     .then(checkResponse)
 }
 
+// выход
+const logout = (token) => {
+  return fetch(`${options.baseApiUrl}/auth/logout`, {
+    method: 'POST',
+    headers: options.headers,
+    body: JSON.stringify({
+      token
+    })
+  })
+    .then(checkResponse)
+}
+
 export {
   getData,
   sendData,
-  changePassword,
+  resetPassword,
+  updatePassword,
   registerUser,
-  authUser
+  login,
+  logout
 }

@@ -1,11 +1,12 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components'
-import {Link} from 'react-router-dom'
-import {useDispatch} from 'react-redux'
+import {Link, useNavigate} from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux'
 import {loginUserThunk} from '../../services/actions/user'
 
 const LoginPage = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [form, setValue] = useState({
     email: '',
     password: ''
@@ -28,6 +29,7 @@ const LoginPage = () => {
 
     const {email, password} = form
     dispatch(loginUserThunk(email, password))
+    navigate('/')
   }
 
   return (
@@ -40,18 +42,18 @@ const LoginPage = () => {
             errorText={'некорректные данные'}
             onChange={inputHandler}
             value={form.email}
-            name={'email'}
-            type={'email'}
-            placeholder={'E-mail'} />
+            name='email'
+            type='email'
+            placeholder='E-mail' />
         </div>
-        <div className={`mt-6 mb-6 input`}>
+        <div className='mt-6 mb-6 input'>
           <Input
             onChange={inputHandler}
             value={form.password}
-            name={'password'}
-            type={'password'}
+            name='password'
+            type='password'
             icon='ShowIcon'
-            placeholder={'Пароль'} />
+            placeholder='Пароль' />
         </div>
         <div className='send_button'>
           <Button onClick={login}>Войти</Button>

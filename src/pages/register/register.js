@@ -33,30 +33,30 @@ const RegisterPage = () => {
       <form
         onSubmit={handleSubmit}
         className='form'>
-        <div className={`mt-6 input`}>
+        <div className='mt-6 input'>
           <Input
             onChange={inputHandler}
             value={name}
-            name={'name'}
-            type={'text'}
-            placeholder={'Имя'} />
+            name='name'
+            type='text'
+            placeholder='Имя' />
         </div>
-        <div className={`mt-6 input`}>
+        <div className='mt-6 input'>
           <Input
             onChange={inputHandler}
             value={email}
-            name={'email'}
-            type={'email'}
-            placeholder={'E-mail'} />
+            name='email'
+            type='email'
+            placeholder='E-mail' />
         </div>
-        <div className={`mt-6 mb-6 input`}>
+        <div className='mt-6 mb-6 input'>
           <Input
             onChange={inputHandler}
             value={password}
-            name={'password'}
-            type={'password'}
+            name='password'
+            type='password'
             icon='ShowIcon'
-            placeholder={'Пароль'} />
+            placeholder='Пароль' />
         </div>
         <div className='send_button'>
           <Button

@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components'
 import {Link, useNavigate} from 'react-router-dom'
-import {changePassword} from '../../utils/api'
+import {resetPassword} from '../../utils/api'
+import {getCookie} from '../../utils/utils'
 
 const ForgotPasswordPage = () => {
   const navigate = useNavigate()
@@ -9,8 +10,15 @@ const ForgotPasswordPage = () => {
 
   const inputHandler = (e) => setEmail(e.target.value)
 
-  const buttonHandler = () => {
-    return changePassword(email)
+
+
+
+
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+
+    return resetPassword(email)
       .then(res => {
         if (res.success) {
           navigate('/reset-password')
@@ -18,23 +26,27 @@ const ForgotPasswordPage = () => {
       })
   }
 
+
+
+
+
   return (
     <div className='wrapper'>
       <h1 className='text text_type_main-medium'>Восстановление пароля</h1>
-      <form className='form'>
+      <form className='form' onSubmit={submitHandler}>
         <div className='mt-6 mb-6 input'>
           <Input
             onChange={inputHandler}
             value={email}
-            type={'email'}
-            placeholder={'Укажите e-mail'} />
+            type='email'
+            placeholder='Укажите e-mail' />
         </div>
         <div className='send_button'>
-          <Button onClick={buttonHandler}>Восстановить</Button>
+          <Button onClick={submitHandler}>Восстановить</Button>
         </div>
       </form>
       <p
-        className={`text mt-20 text_type_main-default text_color_inactive isRegistered`}>
+        className='text mt-20 text_type_main-default text_color_inactive isRegistered'>
         Вспомнили пароль?
         <Link to='/login'>Войти</Link>
       </p>
