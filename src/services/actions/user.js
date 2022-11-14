@@ -14,6 +14,7 @@ export const loginUserThunk = (email, password) => {
           dispatch({type: LOGIN_USER, userData})
         }
       })
+      .catch(console.log)
   }
 }
 
@@ -21,7 +22,10 @@ export const logoutUserThunk = (refreshToken) => {
   return (dispatch) => {
     logout(refreshToken)
       .then(userData => {
-        dispatch({type: LOGOUT_USER})
+        if (userData.success) {
+          dispatch({type: LOGOUT_USER})
+        }
       })
+      .catch(console.log)
   }
 }

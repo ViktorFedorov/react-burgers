@@ -24,7 +24,6 @@ export const userReducer = (state = initialState, action) => {
         refreshToken
       }
     case LOGOUT_USER:
-      console.log(666)
       return {
         user: {
           email: null,

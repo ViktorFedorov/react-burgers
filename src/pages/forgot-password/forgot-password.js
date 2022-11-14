@@ -2,18 +2,12 @@ import React, {useState} from 'react'
 import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components'
 import {Link, useNavigate} from 'react-router-dom'
 import {resetPassword} from '../../utils/api'
-import {getCookie} from '../../utils/utils'
 
 const ForgotPasswordPage = () => {
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
 
   const inputHandler = (e) => setEmail(e.target.value)
-
-
-
-
-
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -25,10 +19,6 @@ const ForgotPasswordPage = () => {
         }
       })
   }
-
-
-
-
 
   return (
     <div className='wrapper'>
