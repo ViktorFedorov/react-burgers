@@ -4,6 +4,7 @@ import {NavLink, useNavigate} from 'react-router-dom'
 import styles from './profile.module.css'
 import {useDispatch, useSelector} from 'react-redux'
 import {setRegisterFormValue} from '../../services/actions/register-form'
+import {getUserThunk} from '../../services/actions/user'
 
 const ProfilePage = () => {
   const dispatch = useDispatch()
@@ -13,6 +14,10 @@ const ProfilePage = () => {
   const inputHandler = (e) => {
     dispatch(setRegisterFormValue(e.target.name, e.target.value))
   }
+
+  useEffect(() => {
+    dispatch(getUserThunk())
+  }, [])
 
   useEffect(() => {
     if (!isAuth) navigate('/login')
@@ -66,7 +71,7 @@ const ProfilePage = () => {
         <div className='mb-6 input'>
           <Input
             onChange={inputHandler}
-            value='111111111'
+            value='1111111'
             name='password'
             type='password'
             icon='EditIcon'

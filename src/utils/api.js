@@ -1,4 +1,4 @@
-import {checkResponse} from './utils'
+import {checkResponse, getCookie} from './utils'
 
 const options = {
   baseApiUrl: 'https://norma.nomoreparties.space/api',
@@ -75,6 +75,22 @@ const login = (email, password) => {
     .then(checkResponse)
 }
 
+// получение данных о пользователе
+const getUserData = () => {
+  return fetch(`${options.baseApiUrl}/auth/user`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + getCookie('token')
+      }
+    })
+    .then(checkResponse)
+}
+
+// изменение данных о пользователе
+const updateUserData = (name, email, password) => {
+  return fetch(`${options.baseApiUrl}/auth/user`)
+}
+
 // выход
 const logout = (token) => {
   return fetch(`${options.baseApiUrl}/auth/logout`, {
@@ -93,6 +109,8 @@ export {
   resetPassword,
   updatePassword,
   registerUser,
+  getUserData,
+  updateUserData,
   login,
   logout
 }

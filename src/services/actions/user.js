@@ -1,5 +1,5 @@
-import {login, logout} from '../../utils/api'
-import {LOGIN_USER, LOGOUT_USER} from '../constants'
+import {getUserData, login, logout} from '../../utils/api'
+import {GET_USER_DATA, LOGIN_USER, LOGOUT_USER} from '../constants'
 import {setCookie} from '../../utils/utils'
 
 export const loginUserThunk = (email, password) => {
@@ -24,6 +24,18 @@ export const logoutUserThunk = (refreshToken) => {
       .then(userData => {
         if (userData.success) {
           dispatch({type: LOGOUT_USER})
+        }
+      })
+      .catch(console.log)
+  }
+}
+
+export const getUserThunk = () => {
+  return (dispatch) => {
+    getUserData()
+      .then(userData => {
+        if (userData.success) {
+          dispatch({type: GET_USER_DATA, userData})
         }
       })
       .catch(console.log)
