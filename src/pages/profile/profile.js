@@ -85,9 +85,15 @@ const ProfilePage = () => {
             icon='EditIcon'
             placeholder='Пароль' />
         </div>
-        <Button
-          htmlType='submit'
-          onClick={updateUserData}>Изменить</Button>
+        <div className={styles.buttons}>
+          <Button
+            type='secondary'
+            size='medium'
+            htmlType='button'>Отмена</Button>
+          <Button
+            htmlType='submit'
+            onClick={updateUserData}>Сохранить</Button>
+        </div>
       </form>
     </div>
   )
