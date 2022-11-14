@@ -1,4 +1,4 @@
-import {GET_USER_DATA, LOGIN_USER, LOGOUT_USER} from '../constants'
+import {CHANGE_USER_PROFILE, GET_USER_DATA, LOGIN_USER, LOGOUT_USER} from '../constants'
 
 const initialState = {
   user: {
@@ -32,6 +32,14 @@ export const userReducer = (state = initialState, action) => {
         isAuth: false,
         accessToken: '',
         refreshToken: ''
+      }
+    case CHANGE_USER_PROFILE:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          [action.field]: action.value
+        }
       }
     case GET_USER_DATA:
       return {

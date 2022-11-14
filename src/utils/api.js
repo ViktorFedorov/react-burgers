@@ -88,7 +88,19 @@ const getUserData = () => {
 
 // изменение данных о пользователе
 const updateUserData = (name, email, password) => {
-  return fetch(`${options.baseApiUrl}/auth/user`)
+  return fetch(`${options.baseApiUrl}/auth/user`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + getCookie('token')
+    },
+    body: JSON.stringify({
+      name,
+      email,
+      password
+    })
+  })
+    .then(checkResponse)
 }
 
 // выход

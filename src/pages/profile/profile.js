@@ -1,10 +1,9 @@
 import React, {useEffect} from 'react'
-import {Input} from '@ya.praktikum/react-developer-burger-ui-components'
+import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components'
 import {NavLink, useNavigate} from 'react-router-dom'
 import styles from './profile.module.css'
 import {useDispatch, useSelector} from 'react-redux'
-import {setRegisterFormValue} from '../../services/actions/register-form'
-import {getUserThunk} from '../../services/actions/user'
+import {getUserThunk, setUserProfile, updateUserThunk} from '../../services/actions/user'
 
 const ProfilePage = () => {
   const dispatch = useDispatch()
@@ -12,7 +11,7 @@ const ProfilePage = () => {
   const navigate = useNavigate()
 
   const inputHandler = (e) => {
-    dispatch(setRegisterFormValue(e.target.name, e.target.value))
+    dispatch(setUserProfile(e.target.name, e.target.value))
   }
 
   useEffect(() => {
@@ -22,6 +21,13 @@ const ProfilePage = () => {
   useEffect(() => {
     if (!isAuth) navigate('/login')
   }, [isAuth, navigate])
+
+  const updateUserData = (e) => {
+    e.preventDefault()
+
+    const {name, email} = user
+    dispatch(updateUserThunk(name, email))
+  }
 
   return (
     <div className={`content ${styles.wrapper}`}>
@@ -49,7 +55,9 @@ const ProfilePage = () => {
           В этом разделе вы можете изменить свои персональные данные
         </p>
       </div>
-      <form className='form mt-6'>
+      <form
+        onSubmit={updateUserData}
+        className='form mt-6'>
         <div className='input'>
           <Input
             onChange={inputHandler}
@@ -63,7 +71,7 @@ const ProfilePage = () => {
           <Input
             onChange={inputHandler}
             value={user.email}
-            name='login'
+            name='email'
             type='text'
             icon='EditIcon'
             placeholder='Логин' />
@@ -77,6 +85,9 @@ const ProfilePage = () => {
             icon='EditIcon'
             placeholder='Пароль' />
         </div>
+        <Button
+          htmlType='submit'
+          onClick={updateUserData}>Изменить</Button>
       </form>
     </div>
   )

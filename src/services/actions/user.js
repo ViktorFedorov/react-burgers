@@ -1,6 +1,8 @@
-import {getUserData, login, logout} from '../../utils/api'
-import {GET_USER_DATA, LOGIN_USER, LOGOUT_USER} from '../constants'
+import {getUserData, login, logout, updateUserData} from '../../utils/api'
+import {CHANGE_USER_PROFILE, GET_USER_DATA, LOGIN_USER, LOGOUT_USER} from '../constants'
 import {setCookie} from '../../utils/utils'
+
+export const setUserProfile = (field, value) => ({type: CHANGE_USER_PROFILE, field, value})
 
 export const loginUserThunk = (email, password) => {
   return (dispatch) => {
@@ -39,5 +41,12 @@ export const getUserThunk = () => {
         }
       })
       .catch(console.log)
+  }
+}
+
+export const updateUserThunk = (name, email) => {
+  return (dispatch) => {
+    updateUserData(name, email)
+      .then(console.log)
   }
 }
