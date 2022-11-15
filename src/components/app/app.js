@@ -11,6 +11,10 @@ import ResetPasswordPage from '../../pages/reset-password/reset-password'
 import ProfilePage from '../../pages/profile/profile'
 import NotFound404 from '../../pages/not-found404/not-found404'
 import {DndProvider} from 'react-dnd'
+import {useSelector} from 'react-redux'
+import ProtectedRoute from '../protected-route/protected-route'
+import OrderPage from '../../pages/order/order'
+import IngredientItem from '../ingredient-item/ingredient-item'
 
 const App = () => {
   return (
@@ -24,7 +28,21 @@ const App = () => {
           <Route path='/logout' element={<LogoutPage />} />
           <Route path='/forgot-password' element={<ForgotPasswordPage />} />
           <Route path='/reset-password' element={<ResetPasswordPage />} />
-          <Route path='/profile' element={<ProfilePage />} />
+
+          <Route path='/profile' element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          } />
+
+          <Route path='/profile/orders' element={
+            <ProtectedRoute>
+              <OrderPage />
+            </ProtectedRoute>
+          } />
+
+          <Route path='/ingredients/:id' element={<IngredientItem />} />
+
           <Route path='*' element={<NotFound404 />} />
         </Routes>
       </DndProvider>

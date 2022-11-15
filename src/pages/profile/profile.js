@@ -7,8 +7,7 @@ import {getUserThunk, setUserProfile, updateUserThunk} from '../../services/acti
 
 const ProfilePage = () => {
   const dispatch = useDispatch()
-  const {user, isAuth} = useSelector(store => store.user)
-  const navigate = useNavigate()
+  const {user} = useSelector(store => store.user)
 
   const inputHandler = (e) => {
     dispatch(setUserProfile(e.target.name, e.target.value))
@@ -17,10 +16,6 @@ const ProfilePage = () => {
   useEffect(() => {
     dispatch(getUserThunk())
   }, [])
-
-  useEffect(() => {
-    if (!isAuth) navigate('/login')
-  }, [isAuth, navigate])
 
   const updateUserData = (e) => {
     e.preventDefault()

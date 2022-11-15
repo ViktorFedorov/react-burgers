@@ -75,7 +75,7 @@ const login = (email, password) => {
     .then(checkResponse)
 }
 
-// получение данных о пользователе
+// получение данных пользователя
 const getUserData = () => {
   return fetch(`${options.baseApiUrl}/auth/user`, {
       headers: {
@@ -86,7 +86,7 @@ const getUserData = () => {
     .then(checkResponse)
 }
 
-// изменение данных о пользователе
+// изменение данных пользователя
 const updateUserData = (name, email, password) => {
   return fetch(`${options.baseApiUrl}/auth/user`, {
     method: 'PATCH',

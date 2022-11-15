@@ -1,6 +1,6 @@
 import {getUserData, login, logout, updateUserData} from '../../utils/api'
 import {CHANGE_USER_PROFILE, GET_USER_DATA, LOGIN_USER, LOGOUT_USER} from '../constants'
-import {setCookie} from '../../utils/utils'
+import {deleteCookie, setCookie} from '../../utils/utils'
 
 export const setUserProfile = (field, value) => ({type: CHANGE_USER_PROFILE, field, value})
 
@@ -25,6 +25,7 @@ export const logoutUserThunk = (refreshToken) => {
     logout(refreshToken)
       .then(userData => {
         if (userData.success) {
+          deleteCookie('token')
           dispatch({type: LOGOUT_USER})
         }
       })

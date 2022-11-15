@@ -4,6 +4,8 @@
   align-items: center;
   position: relative;
   cursor: pointer;
+  color: #f2f2f3;
+  text-decoration: none;
 }
 
 .text {

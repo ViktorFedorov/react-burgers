@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components'
-import {Link, useNavigate} from 'react-router-dom'
-import {useDispatch} from 'react-redux'
+import {Link, Navigate} from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux'
 import {loginUserThunk} from '../../services/actions/user'
 
 const LoginPage = () => {
+  const {user} = useSelector(store => store.user)
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const [form, setValue] = useState({
     email: '',
     password: ''
@@ -29,7 +29,10 @@ const LoginPage = () => {
 
     const {email, password} = form
     dispatch(loginUserThunk(email, password))
-    navigate('/')
+  }
+
+  if (user.name) {
+    return <Navigate to='/' />
   }
 
   return (
